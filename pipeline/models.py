@@ -34,6 +34,8 @@ class Project(models.Model):
         (MD, 'MD'),
         (DS, 'DS'),
     )
+    # shell life
+    SHELL_CHOICES = [(i,i) for i in range(49)]
     # DATABASE SPECYFIC RECORDS
     create_date = models.DateTimeField('date created', auto_now_add=True)
     created_by = models.ForeignKey(
@@ -60,4 +62,7 @@ class Project(models.Model):
                                 related_name="manager")
     status = models.IntegerField(choices=STATUS_CHOICES, default=PIPELINE)
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
-                                                default=RX)  # required
+                                                default=RX, null=False,
+                                                blank=False)  # required
+    pack_size = models.CharField(max_length=100, null=True, blank=True)
+    shelf_life = models.IntegerField(choices=SHELL_CHOICES)
