@@ -5,6 +5,10 @@ from django.contrib.auth.models import User
 
 
 class Project(models.Model):
+    """Database model for project.
+
+    Main aplication object.
+    """
     # type choices
     LIN, RD, RD_ex = (0, 1, 2)
     PTYPE_CHOICES = (
@@ -35,17 +39,18 @@ class Project(models.Model):
         (DS, 'DS'),
     )
     # shell life
-    SHELL_CHOICES = [(i,i) for i in range(49)]
+    SHELL_CHOICES = [(i, i) for i in range(49)]
     # DATABASE SPECYFIC RECORDS
     create_date = models.DateTimeField('date created', auto_now_add=True)
     created_by = models.ForeignKey(
-        'auth.User', null=True, related_name='created_by')
+        'auth.User', null=True, related_name='created_by',
+        on_delete=models.CASCADE)
     modify_date = models.DateTimeField(
         'date modified', null=True, auto_now=True)
     modified_by = models.ForeignKey(
-        'auth.User', null=True, related_name='modified_by')
-
-    project_name = models.CharField(
+        'auth.User', null=True, related_name='modified_by',
+        on_delete=models.CASCADE)
+    name = models.CharField(
         max_length=300, null=False, blank=False)  # required
     # molecule #required
     # form # required
@@ -58,11 +63,14 @@ class Project(models.Model):
         choices=PTYPE_CHOICES, default=LIN)  # required
     contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
     manager = models.ForeignKey(to=User, blank=False, null=False,  # required
-                                on_delete=models.SET_NULL,
+                                on_delete=models.CASCADE,
                                 related_name="manager")
     status = models.IntegerField(choices=STATUS_CHOICES, default=PIPELINE)
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
                                                 blank=False)  # required
     pack_size = models.CharField(max_length=100, null=True, blank=True)
-    shelf_life = models.IntegerField(choices=SHELL_CHOICES)
+    shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0)
+
+    def __str__(self):
+        return self.name
