@@ -17,9 +17,7 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import ProjectCreateView
-from .views import ProjectDetailView
-from .views import ProjectListView
+from .views import ProjectCreateView, ProjectDetailView, ProjectListView
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='project-list'),

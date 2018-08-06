@@ -1,10 +1,8 @@
-from django.views.generic import CreateView
-from django.views.generic import DetailView
-from django.views.generic import ListView
 from django.urls import reverse_lazy
+from django.views.generic import CreateView, DetailView, ListView
 
-from pipeline.models import Project
 from pipeline.forms import ProjectCreateForm
+from pipeline.models import Project
 
 
 class ProjectListView(ListView):
