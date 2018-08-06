@@ -63,6 +63,7 @@ class RobjectModelTestCase(TestCase):
     def test_object_creation(self):
         proj1 = self.help_create_object()
         self.assertTrue(isinstance(proj1, Project))
+        self.assertEqual(proj1.name, "Test object")
 
     def test_fields_classes(self):
         self.help_check_field_type("name", models.CharField)
@@ -95,8 +96,8 @@ class RobjectModelTestCase(TestCase):
             f, (models.CharField, models.TextField))]
 
         for string_field in string_fields:
-            if string_field.null:
-                print(f"\nfield not null: {string_field}")
+            # if string_field.null:
+            #     print(f"\nfield not null: {string_field}")
             self.assertFalse(string_field.null)
 
     def test_required_fields_are_not_null_or_blank(self):
@@ -117,4 +118,6 @@ class RobjectModelTestCase(TestCase):
         self.assertEqual(f"/{proj1.id}/", proj1.get_absolute_url())
 
 # TODO:
-# 1. Test default values fot options fields.
+# 1. Test choices.
+# 2. Test default values for options fields.
+# 3. Test char lengths.
