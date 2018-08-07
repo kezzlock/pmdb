@@ -1,7 +1,10 @@
 import time
 
+from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import override_settings
+
+from pipeline.models import Project
 
 
 @override_settings(DEBUG=False)
@@ -28,3 +31,20 @@ class FunctionalTest(StaticLiveServerTestCase):
                 if time.time() - start_time > self.MAX_WAIT:
                     raise e
                 time.sleep(0.5)
+
+    def help_get_or_create_user(self, username="TestUser"):
+        if not username:
+            user, created = User.objects.get_or_create(username="TestUser")
+        else:
+            user, created = User.objects.get_or_create(username=username)
+        return user
+
+    def help_get_or_create_project(self, name="TestObject1", strength="500mg",
+                                   user=None):
+        if not user:
+            user = self.help_get_or_create_user()
+        project, created = Project.objects.get_or_create(
+            name=name, strength=strength, manager=user, created_by=user)
+        if not project.create_date:
+            project.create_date = timezone.now()
+        return project
