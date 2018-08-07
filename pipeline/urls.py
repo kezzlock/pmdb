@@ -17,10 +17,12 @@ Including another URLconf
 
 from django.urls import path
 
-from .views import ProjectCreateView, ProjectDetailView, ProjectListView
+from .views import (ProjectCreateView, ProjectDeleteView, ProjectDetailView,
+                    ProjectListView)
 
 urlpatterns = [
     path('', ProjectListView.as_view(), name='project-list'),
     path('<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
     path('create/', ProjectCreateView.as_view(), name='project-create'),
+    path('<int:pk>/delete/', ProjectDeleteView.as_view(), name='project-delete'),
 ]

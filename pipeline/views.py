@@ -1,5 +1,6 @@
 from django.urls import reverse_lazy
 from django.views.generic import CreateView, DetailView, ListView
+from django.views.generic.edit import DeleteView
 
 from pipeline.forms import ProjectCreateForm
 from pipeline.models import Project
@@ -19,4 +20,9 @@ class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreateForm
     template_name = 'pipeline/project_create.html'
+    success_url = reverse_lazy('project-list')
+
+
+class ProjectDeleteView(DeleteView):
+    model = Project
     success_url = reverse_lazy('project-list')
