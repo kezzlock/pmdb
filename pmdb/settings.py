@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     # projects
     'pmdb',
     'pipeline',
+    'dropdowns',
     # other
 ]
 
