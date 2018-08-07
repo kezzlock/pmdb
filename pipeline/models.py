@@ -10,7 +10,7 @@ class Project(models.Model):
 
     Main aplication object.
     """
-    # type choices
+    # Project type choices
     LIN, RD, RD_ex = (0, 1, 2)
     PTYPE_CHOICES = (
         (LIN, 'L-in'),
@@ -24,7 +24,7 @@ class Project(models.Model):
         (LATT, 'LA+TT'),
         (DA, 'DA'),
     )
-    # status
+    # status choices
     PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2)
     STATUS_CHOICES = (
         (PREPMB, 'pre-PMB'),
