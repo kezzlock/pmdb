@@ -113,6 +113,39 @@ class ProjectCreateViewTestCase(BasicTestCase):
         form = response.context["form"]
         self.assertEqual(form._meta.model, Project)
 
+
 # TODO: 1. test required fields,
 # TODO: 2. test for success url and succes save
 # TODO: 3. test form_valid method
+
+class ProjectDeleteViewTestCase(BasicTestCase):
+    def setUp(self):
+        super().setUp()
+        # create user
+        self.user = self.help_get_or_create_user()
+        # create project
+        self.project = self.help_get_or_create_project()
+        # set url
+        self.url = reverse('project-delete', args=[self.project.pk])
+
+    def test_view_renders_delete_confirm_template(self):
+        response = self.client.get(self.url)
+        self.assertTemplateUsed(
+            response, "pipeline/project_confirm_delete.html")
+
+    def test_view_add_object_to_context(self):
+        response = self.client.get(self.url)
+        self.assertEqual(self.project, response.context["object"])
+
+    def test_view_on_post(self):
+        # get success url
+        success_url = reverse("project-list")
+        # save temporaly object pk before deleting
+        object_pk = self.project.pk
+        # send post - delete object
+        response = self.client.post(self.url)
+        # asssert redirection
+        self.assertRedirects(response, success_url)
+        # check if object is deleted
+        with self.assertRaises(Project.DoesNotExist):
+            Project.objects.get(pk=object_pk)
