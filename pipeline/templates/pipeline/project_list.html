@@ -3,11 +3,11 @@
 {% block content %}
 
   <h1>Projects</h1>
-    <ul>
+    <ul id="project-list">
       {% for project in object_list %}
         <li>{{ project.name }} - {{ project.id }} - {{ project.manager }}</li>
       {% empty %}
-        <li>No articles yet.</li>
+        <li>No projects yet.</li>
       {% endfor %}
     </ul>
 {% endblock %}

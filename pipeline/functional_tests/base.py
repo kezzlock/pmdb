@@ -5,6 +5,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import override_settings
 
 from pipeline.models import Project
+from selenium import webdriver
 
 
 @override_settings(DEBUG=False)
@@ -14,7 +15,7 @@ class FunctionalTest(StaticLiveServerTestCase):
     MAX_WAIT = 10
 
     def setUp(self):
-        self.browser = webdriver.Chrome()
+        self.browser = webdriver.Firefox()
         self.main_window = None
         while not self.main_window:
             self.main_window = self.browser.current_window_handle
@@ -22,15 +23,27 @@ class FunctionalTest(StaticLiveServerTestCase):
     def tearDown(self):
         self.browser.quit()
 
+    def wait(fn):
+        """Decorator of function for loop checking funtion up to MAX_WAIT.
+
+        Decorator returns a new function which will keep calling
+        the input function, catching usual exceptions, until a timeout occurs.
+        Required for selenium.
+        """
+        def modified_fn():
+            start_time = time.time()
+            while True:
+                try:
+                    return fn()
+                except (AssertionError, WebDriverException) as e:
+                    if time.time() - start_time > MAX_WAIT:
+                        raise e
+                    time.sleep(0.5)
+        return modified_fn
+
+    @wait
     def wait_for(self, fn):
-        start_time = time.time()
-        while True:
-            try:
-                return fn()
-            except (AssertionError, WebDriverException) as e:
-                if time.time() - start_time > self.MAX_WAIT:
-                    raise e
-                time.sleep(0.5)
+        return fn()
 
     def help_get_or_create_user(self, username="TestUser"):
         if not username:
