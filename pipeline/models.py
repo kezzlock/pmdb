@@ -41,6 +41,18 @@ class Project(models.Model):
     )
     # shell life
     SHELL_CHOICES = [(i, i) for i in range(49)]
+    # priority choices
+    TBC = 0
+    LOW = 1
+    NORMAL = 2
+    HIGH = 3
+    PRIORITY_CHOICES = (
+        (TBC, 'tbc'),
+        (LOW, 'Low'),
+        (NORMAL, 'Normal'),
+        (HIGH, 'High'),
+    )
+
     # DATABASE SPECYFIC RECORDS
     create_date = models.DateTimeField('date_created', auto_now_add=True)
     created_by = models.ForeignKey(
@@ -71,6 +83,8 @@ class Project(models.Model):
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
                                                 blank=False)  # required
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
+                                 null=True, blank=True)
     pack_size = models.CharField(max_length=100, blank=True)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
                                      null=True, blank=True)
