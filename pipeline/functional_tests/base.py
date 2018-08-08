@@ -3,9 +3,9 @@ import time
 from django.contrib.auth.models import User
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import override_settings
+from selenium import webdriver
 
 from pipeline.models import Project
-from selenium import webdriver
 
 
 @override_settings(DEBUG=False)
