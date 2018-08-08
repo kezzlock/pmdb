@@ -2,6 +2,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
+from dropdowns.models import (AtcClass, Molecule, PackType, PharmaForm,
+                              TherapeuticArea)
+
 # main object model
 
 
@@ -65,12 +68,13 @@ class Project(models.Model):
         on_delete=models.CASCADE)
     name = models.CharField(
         max_length=300, null=False, blank=False)  # required
-    # molecule #required
-    # form # required
+    molecule = models.ForeignKey(
+        Molecule, on_delete=models.CASCADE)  # required
+    form = models.ForeignKey(PharmaForm, on_delete=models.CASCADE)  # required
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
-    # market # required
+    # TODO: # market # required
     description = models.TextField(blank=True)
     project_type = models.IntegerField(
         choices=PTYPE_CHOICES, default=LIN)  # required
@@ -83,11 +87,17 @@ class Project(models.Model):
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
                                                 blank=False)  # required
-    priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
-                                 null=True, blank=True)
+    atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
+                                  on_delete=models.CASCADE)
     pack_size = models.CharField(max_length=100, blank=True)
+    pact_type = models.ForeignKey(PackType, blank=True, null=True,
+                                  on_delete=models.CASCADE)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
                                      null=True, blank=True)
+    therapeutic_area = models.ForeignKey(TherapeuticArea, blank=True, null=True,
+                                         on_delete=models.CASCADE)
+    priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
+                                   null=True, blank=True)
 
     def __str__(self):
         return self.name

@@ -9,6 +9,7 @@ class Molecule(models.Model):
     def __str__(self):
         return self.name
 
+
 class PharmaForm(models.Model):
     """Pharmaceutical form of Molecule."""
 
@@ -16,6 +17,7 @@ class PharmaForm(models.Model):
 
     def __str__(self):
         return self.type
+
 
 class TherapeuticArea(models.Model):
     """List of all Therapeutic Areas."""
@@ -25,6 +27,7 @@ class TherapeuticArea(models.Model):
     def __str__(self):
         return self.type
 
+
 class PackType(models.Model):
     """Django data model PackType"""
 
@@ -32,6 +35,7 @@ class PackType(models.Model):
 
     def __str__(self):
         return self.type
+
 
 class AtcClass(models.Model):
     """Django data model AtcClass"""
