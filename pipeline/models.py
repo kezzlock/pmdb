@@ -16,7 +16,7 @@ class Project(models.Model):
     # Project type choices
     LIN, RD, RD_ex = (0, 1, 2)
     PTYPE_CHOICES = (
-        (LIN, 'L-in'),
+        (LIN, 'License-in'),
         (RD, 'R&D'),
         (RD_ex, 'R&D external'),
     )
@@ -28,11 +28,12 @@ class Project(models.Model):
         (DA, 'DA'),
     )
     # status choices
-    PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2)
+    TERMINATED, PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2, 3)
     STATUS_CHOICES = (
         (PREPMB, 'pre-PMB'),
         (PIPELINE, 'pipeline'),
         (PORTFOLIO, 'portfolio'),
+        (TERMINATED, 'terminated'),
     )
     # prescription category
     OTC, RX, MD, DS = (0, 1, 2, 3)
