@@ -45,3 +45,12 @@ class AtcClass(models.Model):
 
     def __str__(self):
         return str(f"{self.code} {self.type}")
+
+
+class Market(models.Model):
+    """Django data model Market"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
+
+    def __str__(self):
+        return str(self.name)
