@@ -1,6 +1,5 @@
-from django.db import models
-
 import pycountry
+from django.db import models
 
 
 class Molecule(models.Model):
