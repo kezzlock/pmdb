@@ -75,7 +75,7 @@ class Project(models.Model):
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
-    # TODO: # market # required
+    # market  # required for subproject
     description = models.TextField(blank=True)
     project_type = models.IntegerField(
         choices=PTYPE_CHOICES, default=LIN)  # required
