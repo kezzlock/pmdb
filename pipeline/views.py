@@ -1,6 +1,5 @@
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView
-from django.views.generic.edit import DeleteView
+from django.views.generic import CreateView, DeleteView, DetailView, ListView
 
 from pipeline.forms import ProjectCreateForm
 from pipeline.models import Project
