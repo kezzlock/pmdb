@@ -6,7 +6,7 @@
   <h1>{{ model|verbose_name_plural }}</h1>
     <ul id="object-list">
       {% for object in object_list %}
-        <li>{{ object.name }} - {{ object.id }}</li>
+        <li>{{ object}} | {{ object.id }}</li>
       {% empty %}
         <li>No objects yet.</li>
       {% endfor %}

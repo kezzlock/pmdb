@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
 from .models import Molecule, PharmaForm
 
@@ -30,6 +31,7 @@ class UniversalCreateView(CreateView):
         self.success_url = reverse_lazy(
             f"{self.model._meta.verbose_name.lower().replace(' ','')}-list")
 
+
 class UniversalUpdateView(UpdateView):
     fields = '__all__'
     template_name = 'dropdowns/universal_update.html'
@@ -37,7 +39,6 @@ class UniversalUpdateView(UpdateView):
     def __init__(self):
         self.success_url = reverse_lazy(
             f"{self.model._meta.verbose_name.lower().replace(' ','')}-list")
-
 
 
 class UniversalDeleteView(DeleteView):
@@ -63,5 +64,31 @@ class MoleculeCreateView(UniversalCreateView):
     model = Molecule
 
 
+class MoleculeUpdateView(UniversalUpdateView):
+    model = Molecule
+
+
 class MoleculeDeleteView(UniversalDeleteView):
     model = Molecule
+
+# PharmaForm
+
+
+class PharmaFormListView(UniversalListView):
+    model = PharmaForm
+
+
+class PharmaFormDetailView(UniversalDetailView):
+    model = PharmaForm
+
+
+class PharmaFormCreateView(UniversalCreateView):
+    model = PharmaForm
+
+
+class PharmaFormUpdateView(UniversalUpdateView):
+    model = PharmaForm
+
+
+class PharmaFormDeleteView(UniversalDeleteView):
+    model = PharmaForm
