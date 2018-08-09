@@ -1,5 +1,7 @@
 from django.db import models
 
+import pycountry
+
 
 class Molecule(models.Model):
     """Database model for API molecule."""
@@ -54,3 +56,13 @@ class Market(models.Model):
 
     def __str__(self):
         return str(self.name)
+
+    # use https://pypi.org/project/pycountry/ for auto code generation
+    @property
+    def code(self):
+        try:
+            country = pycountry.countries.get(name=self.name)
+            return country.alpha2
+        except Exception:
+            country = ''
+        return country
