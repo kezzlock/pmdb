@@ -90,7 +90,7 @@ class Project(models.Model):
                                                 blank=False)  # required
     atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
                                   on_delete=models.CASCADE)
-    pack_size = models.CharField(max_length=100, blank=True)
+    pack_size = models.TextField(blank=True)
     pact_type = models.ForeignKey(PackType, blank=True, null=True,
                                   on_delete=models.CASCADE)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
