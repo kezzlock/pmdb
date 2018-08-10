@@ -1,12 +1,15 @@
 from django.urls import path
 
-from .views import (MoleculeCreateView, MoleculeDeleteView, MoleculeDetailView,
-                    MoleculeListView, MoleculeUpdateView, PharmaFormCreateView,
-                    PharmaFormDeleteView, PharmaFormDetailView,
-                    PharmaFormListView, PharmaFormUpdateView,
-                    TherapeuticAreaCreateView, TherapeuticAreaDeleteView,
-                    TherapeuticAreaDetailView, TherapeuticAreaListView,
-                    TherapeuticAreaUpdateView)
+from .views import (AtcClassCreateView, AtcClassDeleteView, AtcClassDetailView,
+                    AtcClassListView, AtcClassUpdateView, MoleculeCreateView,
+                    MoleculeDeleteView, MoleculeDetailView, MoleculeListView,
+                    MoleculeUpdateView, PackTypeCreateView, PackTypeDeleteView,
+                    PackTypeDetailView, PackTypeListView, PackTypeUpdateView,
+                    PharmaFormCreateView, PharmaFormDeleteView,
+                    PharmaFormDetailView, PharmaFormListView,
+                    PharmaFormUpdateView, TherapeuticAreaCreateView,
+                    TherapeuticAreaDeleteView, TherapeuticAreaDetailView,
+                    TherapeuticAreaListView, TherapeuticAreaUpdateView)
 
 urlpatterns = [
     # molecule
@@ -30,7 +33,8 @@ urlpatterns = [
     path('pharmaform/<int:pk>/delete/', PharmaFormDeleteView.as_view(),
          name='pharmaform-delete'),
     # TherapeuticArea
-    path('therapeuticarea/', TherapeuticAreaListView.as_view(), name='therapeuticarea-list'),
+    path('therapeuticarea/', TherapeuticAreaListView.as_view(),
+         name='therapeuticarea-list'),
     path('therapeuticarea/<int:pk>/', TherapeuticAreaDetailView.as_view(),
          name='therapeuticarea-detail'),
     path('therapeuticarea/create/', TherapeuticAreaCreateView.as_view(),
@@ -39,4 +43,26 @@ urlpatterns = [
          name='therapeuticarea-update'),
     path('therapeuticarea/<int:pk>/delete/', TherapeuticAreaDeleteView.as_view(),
          name='therapeuticarea-delete'),
+    # PackType
+    path('packtype/', PackTypeListView.as_view(),
+         name='packtype-list'),
+    path('packtype/<int:pk>/', PackTypeDetailView.as_view(),
+         name='packtype-detail'),
+    path('packtype/create/', PackTypeCreateView.as_view(),
+         name='packtype-create'),
+    path('packtype/<int:pk>/update/', PackTypeUpdateView.as_view(),
+         name='packtype-update'),
+    path('packtype/<int:pk>/delete/', PackTypeDeleteView.as_view(),
+         name='packtype-delete'),
+    # AtcClass
+    path('atcclass/', AtcClassListView.as_view(),
+         name='atcclass-list'),
+    path('atcclass/<int:pk>/', AtcClassDetailView.as_view(),
+         name='atcclass-detail'),
+    path('atcclass/create/', AtcClassCreateView.as_view(),
+         name='atcclass-create'),
+    path('atcclass/<int:pk>/update/', AtcClassUpdateView.as_view(),
+         name='atcclass-update'),
+    path('atcclass/<int:pk>/delete/', AtcClassDeleteView.as_view(),
+         name='atcclass-delete'),
 ]
