@@ -3,7 +3,10 @@ from django.urls import path
 from .views import (MoleculeCreateView, MoleculeDeleteView, MoleculeDetailView,
                     MoleculeListView, MoleculeUpdateView, PharmaFormCreateView,
                     PharmaFormDeleteView, PharmaFormDetailView,
-                    PharmaFormListView, PharmaFormUpdateView)
+                    PharmaFormListView, PharmaFormUpdateView,
+                    TherapeuticAreaCreateView, TherapeuticAreaDeleteView,
+                    TherapeuticAreaDetailView, TherapeuticAreaListView,
+                    TherapeuticAreaUpdateView)
 
 urlpatterns = [
     # molecule
@@ -26,4 +29,14 @@ urlpatterns = [
          name='pharmaform-update'),
     path('pharmaform/<int:pk>/delete/', PharmaFormDeleteView.as_view(),
          name='pharmaform-delete'),
+    # TherapeuticArea
+    path('therapeuticarea/', TherapeuticAreaListView.as_view(), name='therapeuticarea-list'),
+    path('therapeuticarea/<int:pk>/', TherapeuticAreaDetailView.as_view(),
+         name='therapeuticarea-detail'),
+    path('therapeuticarea/create/', TherapeuticAreaCreateView.as_view(),
+         name='therapeuticarea-create'),
+    path('therapeuticarea/<int:pk>/update/', TherapeuticAreaUpdateView.as_view(),
+         name='therapeuticarea-update'),
+    path('therapeuticarea/<int:pk>/delete/', TherapeuticAreaDeleteView.as_view(),
+         name='therapeuticarea-delete'),
 ]

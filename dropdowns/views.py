@@ -3,7 +3,7 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from .models import Molecule, PharmaForm
+from .models import Molecule, PharmaForm, TherapeuticArea
 
 # Molecule Views
 
@@ -92,3 +92,24 @@ class PharmaFormUpdateView(UniversalUpdateView):
 
 class PharmaFormDeleteView(UniversalDeleteView):
     model = PharmaForm
+
+# therapeutic area
+
+class TherapeuticAreaListView(UniversalListView):
+    model = TherapeuticArea
+
+
+class TherapeuticAreaDetailView(UniversalDetailView):
+    model = TherapeuticArea
+
+
+class TherapeuticAreaCreateView(UniversalCreateView):
+    model = TherapeuticArea
+
+
+class TherapeuticAreaUpdateView(UniversalUpdateView):
+    model = TherapeuticArea
+
+
+class TherapeuticAreaDeleteView(UniversalDeleteView):
+    model = TherapeuticArea
