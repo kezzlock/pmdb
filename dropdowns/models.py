@@ -89,3 +89,15 @@ class Market(models.Model):
         except Exception:
             country = ''
         return country
+
+class Licensors(models.Model):
+    """Django data model Licensors"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Licensors'
+        verbose_name_plural = 'Licensors'
+
+    def __str__(self):
+        return str(self.id)
