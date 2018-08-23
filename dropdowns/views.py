@@ -49,6 +49,27 @@ class UniversalDeleteView(DeleteView):
             f"{self.model._meta.verbose_name.lower().replace(' ','')}-list")
 
 
+# AtcClass
+
+class AtcClassListView(UniversalListView):
+    model = AtcClass
+
+
+class AtcClassDetailView(UniversalDetailView):
+    model = AtcClass
+
+
+class AtcClassCreateView(UniversalCreateView):
+    model = AtcClass
+
+
+class AtcClassUpdateView(UniversalUpdateView):
+    model = AtcClass
+
+
+class AtcClassDeleteView(UniversalDeleteView):
+    model = AtcClass
+
 # Molecule
 
 
@@ -70,6 +91,27 @@ class MoleculeUpdateView(UniversalUpdateView):
 
 class MoleculeDeleteView(UniversalDeleteView):
     model = Molecule
+
+# pack type
+
+class PackTypeListView(UniversalListView):
+    model = PackType
+
+
+class PackTypeDetailView(UniversalDetailView):
+    model = PackType
+
+
+class PackTypeCreateView(UniversalCreateView):
+    model = PackType
+
+
+class PackTypeUpdateView(UniversalUpdateView):
+    model = PackType
+
+
+class PackTypeDeleteView(UniversalDeleteView):
+    model = PackType
 
 # PharmaForm
 
@@ -114,45 +156,3 @@ class TherapeuticAreaUpdateView(UniversalUpdateView):
 
 class TherapeuticAreaDeleteView(UniversalDeleteView):
     model = TherapeuticArea
-
-# pack type
-
-class PackTypeListView(UniversalListView):
-    model = PackType
-
-
-class PackTypeDetailView(UniversalDetailView):
-    model = PackType
-
-
-class PackTypeCreateView(UniversalCreateView):
-    model = PackType
-
-
-class PackTypeUpdateView(UniversalUpdateView):
-    model = PackType
-
-
-class PackTypeDeleteView(UniversalDeleteView):
-    model = PackType
-
-# AtcClass
-
-class AtcClassListView(UniversalListView):
-    model = AtcClass
-
-
-class AtcClassDetailView(UniversalDetailView):
-    model = AtcClass
-
-
-class AtcClassCreateView(UniversalCreateView):
-    model = AtcClass
-
-
-class AtcClassUpdateView(UniversalUpdateView):
-    model = AtcClass
-
-
-class AtcClassDeleteView(UniversalDeleteView):
-    model = AtcClass
