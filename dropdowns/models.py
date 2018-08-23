@@ -26,7 +26,7 @@ class Licensor(models.Model):
         verbose_name_plural = 'Licensors'
 
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 class Market(models.Model):
