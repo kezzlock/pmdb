@@ -13,27 +13,12 @@ class Project(models.Model):
 
     Main aplication object.
     """
-    # Project type choices
-    LIN, RD, RD_ex = (0, 1, 2)
-    PTYPE_CHOICES = (
-        (LIN, 'License-in'),
-        (RD, 'R&D'),
-        (RD_ex, 'R&D external'),
-    )
     # contract type
     LSA, LATT, DA = (0, 1, 2)
     CTYPE_CHOICES = (
         (LSA, 'LSA'),
         (LATT, 'LA+TT'),
         (DA, 'DA'),
-    )
-    # status choices
-    TERMINATED, PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2, 3)
-    STATUS_CHOICES = (
-        (PREPMB, 'pre-PMB'),
-        (PIPELINE, 'pipeline'),
-        (PORTFOLIO, 'portfolio'),
-        (TERMINATED, 'terminated'),
     )
     # prescription category
     OTC, RX, MD, DS = (0, 1, 2, 3)
@@ -43,8 +28,6 @@ class Project(models.Model):
         (MD, 'MD'),
         (DS, 'DS'),
     )
-    # shell life
-    SHELL_CHOICES = [(i, i) for i in range(49)]
     # priority choices
     TBC = 0
     LOW = 1
@@ -56,6 +39,31 @@ class Project(models.Model):
         (NORMAL, 'Normal'),
         (HIGH, 'High'),
     )
+    # Project type choices
+    LIN, RD, RD_ex = (0, 1, 2)
+    PTYPE_CHOICES = (
+        (LIN, 'License-in'),
+        (RD, 'R&D'),
+        (RD_ex, 'R&D external'),
+    )
+    # Risk
+    UNACCEPTABLE, LOW, MEDIUM, HIGH = (0, 1, 2, 3)
+    RISK_CHOICES = (
+        (UNACCEPTABLE, 'Unacceptable'),
+        (LOW, 'Low'),
+        (MEDIUM, 'Medium'),
+        (HIGH, 'High'),
+    )
+    # status choices
+    TERMINATED, PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2, 3)
+    STATUS_CHOICES = (
+        (PREPMB, 'pre-PMB'),
+        (PIPELINE, 'pipeline'),
+        (PORTFOLIO, 'portfolio'),
+        (TERMINATED, 'terminated'),
+    )
+    # shell life
+    SHELL_CHOICES = [(i, i) for i in range(49)]
 
     # DATABASE SPECYFIC RECORDS
     create_date = models.DateTimeField('date_created', auto_now_add=True)
@@ -101,8 +109,37 @@ class Project(models.Model):
                                   on_delete=models.CASCADE)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
                                      null=True, blank=True)
+    # finanse
+    moq = models.CharField(max_length=200, blank=True)
+    sku = models.TextField(blank=True)
+    cogs = models.TextField(blank=True)
+    pmb_budget = models.FloatField(null=True, blank=True, default=None)
+    licence_costs = models.FloatField(null=True, blank=True, default=None)
+    licence_comment = models.TextField(blank=True)
+    regulatory_costs = models.FloatField(null=True, blank=True, default=None)
+    other_costs = models.FloatField(null=True, blank=True, default=None)
+    total_costs = models.FloatField(null=True, blank=True, default=None)
+    fiveyear_income = models.FloatField(null=True, blank=True, default=None)
+    npv = models.FloatField(null=True, blank=True, default=None)
+    ebidta = models.FloatField(null=True, blank=True, default=None)
+    ebitda_percent = models.DecimalField(null=True, blank=True, max_digits=5,
+                                         decimal_places=2)
+    # timelines plan
+
+    # risks
+    risk_type = models.IntegerField(choices=RISK_CHOICES, default=1, null=True,
+                                    blank=True)
+    risk_comment = models.TextField(blank=True)
+    # IP STATUS
+    ip = models.DateField(null=True, blank=True)
+    dex = models.DateField(null=True, blank=True)
+    mex = models.DateField(null=True, blank=True)
+    mfd = models.DateField(null=True, blank=True)
+    ip_comment = models.TextField(blank=True)
+    # Licensing agreement summary
     licensor = models.ForeignKey(to=Licensor, blank=True, null=True,
                                  on_delete=models.CASCADE)
+    
 
     def __str__(self):
         return self.name
