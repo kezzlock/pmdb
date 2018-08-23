@@ -3,9 +3,10 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from .models import AtcClass, Molecule, PackType, PharmaForm, TherapeuticArea
+from .models import (AtcClass, Licensor, Market, Molecule, PackType,
+                     PharmaForm, TherapeuticArea)
 
-# Molecule Views
+# Universal Generic View for dropdowns
 
 
 class UniversalListView(ListView):
@@ -70,6 +71,50 @@ class AtcClassUpdateView(UniversalUpdateView):
 class AtcClassDeleteView(UniversalDeleteView):
     model = AtcClass
 
+
+# Licensors
+
+class LicensorListView(UniversalListView):
+    model = Licensor
+
+
+class LicensorDetailView(UniversalDetailView):
+    model = Licensor
+
+
+class LicensorCreateView(UniversalCreateView):
+    model = Licensor
+
+
+class LicensorUpdateView(UniversalUpdateView):
+    model = Licensor
+
+
+class LicensorDeleteView(UniversalDeleteView):
+    model = Licensor
+
+# Markets
+
+
+class MarketListView(UniversalListView):
+    model = Market
+
+
+class MarketDetailView(UniversalDetailView):
+    model = Market
+
+
+class MarketCreateView(UniversalCreateView):
+    model = Market
+
+
+class MarketUpdateView(UniversalUpdateView):
+    model = Market
+
+
+class MarketDeleteView(UniversalDeleteView):
+    model = Market
+
 # Molecule
 
 
@@ -93,6 +138,7 @@ class MoleculeDeleteView(UniversalDeleteView):
     model = Molecule
 
 # pack type
+
 
 class PackTypeListView(UniversalListView):
     model = PackType
