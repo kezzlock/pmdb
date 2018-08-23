@@ -2,8 +2,8 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
-from dropdowns.models import (AtcClass, Molecule, PackType, PharmaForm,
-                              TherapeuticArea)
+from dropdowns.models import (AtcClass, Licensor, Market, Molecule, PackType,
+                              PharmaForm, TherapeuticArea)
 
 # main object model
 
@@ -75,30 +75,34 @@ class Project(models.Model):
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
-    # market  # required for subproject
+    market = models.ForeignKey(to=Market, blank=False, null=False,  # required
+                               on_delete=models.CASCADE)
     description = models.TextField(blank=True)
     project_type = models.IntegerField(
         choices=PTYPE_CHOICES, default=LIN)  # required
-    contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
     manager = models.ForeignKey(to=User, blank=False, null=False,  # required
                                 on_delete=models.CASCADE,
                                 related_name="manager")
+    contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
     status = models.IntegerField(choices=STATUS_CHOICES, default=PIPELINE,
                                  null=True, blank=True)
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
                                                 blank=False)  # required
-    atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
-                                  on_delete=models.CASCADE)
-    pack_size = models.TextField(blank=True)
-    pact_type = models.ForeignKey(PackType, blank=True, null=True,
-                                  on_delete=models.CASCADE)
-    shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
-                                     null=True, blank=True)
     therapeutic_area = models.ForeignKey(TherapeuticArea, blank=True, null=True,
                                          on_delete=models.CASCADE)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
                                    null=True, blank=True)
+    atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
+                                  on_delete=models.CASCADE)
+    pack_size = models.TextField(blank=True)
+
+    pact_type = models.ForeignKey(PackType, blank=True, null=True,
+                                  on_delete=models.CASCADE)
+    shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
+                                     null=True, blank=True)
+    licensor = models.ForeignKey(to=Licensor, blank=True, null=True,
+                                 on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
