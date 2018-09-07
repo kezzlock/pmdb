@@ -43,7 +43,10 @@ INSTALLED_APPS = [
     'pmdb',
     'pipeline',
     'dropdowns',
+    # dataTables
+    'django_datatables_view',
     # other
+
 ]
 
 
