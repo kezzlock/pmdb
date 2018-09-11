@@ -1,6 +1,10 @@
 {% extends "pmdb/base.html" %}
 {% load static %}
 
+{% block extra_head %}
+  {% include "pipeline/table_script.html" %}
+{% endblock %}
+
 {% block content %}
   <div class="sheet__dashboard">
       <div class="sheet__icons">
@@ -27,12 +31,20 @@
                            alt="table"></a>
       </div>
   </div>
-  <h1>Projects</h1>
-    <ul id="project-list">
-      {% for project in object_list %}
-        <li>{{ project.name }} - {{ project.id }} - {{ project.manager }}</li>
-      {% empty %}
-        <li>No projects yet.</li>
-      {% endfor %}
-    </ul>
+  <div class="sheet__table-container">
+      <table class="table">
+          <thead class="table__thead">
+            <th>ID</th>
+            <th>Project Name</th>
+            <th>Molecule</th>
+            <th>Form</th>
+            <th>Strength</th>
+            <th>Brand name</th>
+            <th>Market</th>
+          </thead>
+
+          <tbody></tbody>
+      </table>
+  </div>
+
 {% endblock %}
