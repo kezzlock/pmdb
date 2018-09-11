@@ -17,6 +17,7 @@ Including another URLconf
 
 from django.urls import path
 
+from .api import ProjectListJson
 from .views import (ProjectCreateView, ProjectDeleteView, ProjectDetailView,
                     ProjectListView, ProjectUpdateView)
 
@@ -27,4 +28,5 @@ urlpatterns = [
     path('<int:pk>/update/', ProjectUpdateView.as_view(), name='project-update'),
     path('<int:pk>/delete/', ProjectDeleteView.as_view(),
          name='project-delete'),
+    path('datatable/', ProjectListJson.as_view(), name='project_list_json'),
 ]
