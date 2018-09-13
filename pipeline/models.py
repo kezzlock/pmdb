@@ -1,3 +1,5 @@
+from os import path
+
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -139,10 +141,31 @@ class Project(models.Model):
     # Licensing agreement summary
     licensor = models.ForeignKey(to=Licensor, blank=True, null=True,
                                  on_delete=models.CASCADE)
-    
 
     def __str__(self):
         return self.name
 
     def get_absolute_url(self):
         return reverse('project-detail', args=[str(self.id)])
+
+    class FileGroup(models.Moel):
+        # required
+        name = models.CharField(
+            max_length=300, null=False, blank=False, unique=True)
+        description = models.TextField(blank=True)
+
+    class File(models.Model):
+        file = models.FileField()
+        group = models.ForeignKey(
+            'FileGroup', null=False, blank=False, related_name='created_by',
+            on_delete=models.CASCADE, default=default_group)
+
+        def __str__(self):
+            return self.file.name
+
+        def filename(self):
+            return path.basename(self.file.name)
+
+        def default_group(self):
+            # get or create default group
+            return FileGroup.objects.get_or_create(name="General")[0]
