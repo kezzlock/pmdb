@@ -7,7 +7,7 @@ from django.urls import reverse
 from dropdowns.models import (AtcClass, Licensor, Market, Molecule, PackType,
                               PharmaForm, TherapeuticArea)
 
-# main object model
+### main object model ###
 
 
 class Project(models.Model):
@@ -147,6 +147,8 @@ class Project(models.Model):
 
     def get_absolute_url(self):
         return reverse('project-detail', args=[str(self.id)])
+
+### FILES OBJECTS ###
 
     class FileGroup(models.Moel):
         # required
