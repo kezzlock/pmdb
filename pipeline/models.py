@@ -150,24 +150,32 @@ class Project(models.Model):
 
 ### FILES OBJECTS ###
 
-    class FileGroup(models.Moel):
-        # required
-        name = models.CharField(
-            max_length=300, null=False, blank=False, unique=True)
-        description = models.TextField(blank=True)
 
-    class File(models.Model):
-        file = models.FileField()
-        group = models.ForeignKey(
-            'FileGroup', null=False, blank=False, related_name='created_by',
-            on_delete=models.CASCADE, default=default_group)
+class FileGroup(models.Model):
+    # required
+    name = models.CharField(
+        max_length=300, null=False, blank=False, unique=True)
+    description = models.TextField(blank=True)
 
-        def __str__(self):
-            return self.file.name
+    def __str__(self):
+        return self.name
 
-        def filename(self):
-            return path.basename(self.file.name)
 
-        def default_group(self):
-            # get or create default group
-            return FileGroup.objects.get_or_create(name="General")[0]
+class File(models.Model):
+    file = models.FileField()
+
+    def default_group():
+        # get or create default group
+        return FileGroup.objects.get_or_create(name="General")[0]
+
+    group = models.ForeignKey(
+        'FileGroup', null=False, blank=False, related_name='created_by',
+        on_delete=models.CASCADE, default=default_group)
+    project = models.ForeignKey(
+        'Project', null=False, blank=False, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.file.name
+
+    def filename(self):
+        return path.basename(self.file.name)
