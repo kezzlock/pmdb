@@ -3,6 +3,7 @@ from os import path
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
+from filer.fields.file import FilerFileField
 
 from dropdowns.models import (AtcClass, Licensor, Market, Molecule, PackType,
                               PharmaForm, TherapeuticArea)
@@ -162,7 +163,8 @@ class FileGroup(models.Model):
 
 
 class File(models.Model):
-    file = models.FileField()
+    file = FilerFileField(null=False, blank=False, related_name="project_file",
+                          on_delete=models.CASCADE)
 
     def default_group():
         # get or create default group
