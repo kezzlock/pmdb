@@ -1,6 +1,4 @@
 {% load static %}
-
-<!--TODO: Find a way to split html file into several files (reusable parts)-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,33 +14,36 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
-    <!-- JavaScript scripts -->
+    <!-- JavaScript scripts libraries -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+    <!-- JavaScript scripts custom -->
     <script src="{% static 'pmdb/js/script.js' %}"></script>
 
-    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">-->
+    <!-- extra HEAD -->
     {% block extra_head %} {% endblock %}
+
     <title>PMDB</title>
 </head>
 <body>
 <nav class="nav-bar">
     <div class="nav-bar__container">
         <div class="nav-bar__left-bar">
-            <a href="#" class="icon-link-with-right-margin">
+            <button class="icon-with-right-margin nav-bar__toggle-sidebar">
                 <img class="icon" src="{% static 'pmdb/img/menu.png' %}" alt="menu">
-            </a>
-            <a href="#" class="icon-link-with-right-margin">
+            </button>
+            <a href="#" class="icon-with-right-margin">
                 <img class="icon" src="{% static 'pmdb/img/home-icon-silhouette.png' %}" alt="home">
             </a>
-            <a href="#" class="icon-link-with-right-margin">
+            <a href="#" class="icon-with-right-margin">
                 <img class="icon" src="{% static 'pmdb/img/group-avatar.png' %}" alt="group">
             </a>
-            <a href="#" class="icon-link-with-right-margin">
+            <a href="#" class="icon-with-right-margin">
                 <img class="icon" src="{% static 'pmdb/img/diary-silhouette.png' %}" alt="diary">
             </a>
             <a href="#" class="nav-bar__icon-link">
@@ -57,12 +58,12 @@
             <a href="#" class="nav-bar__icon-link">
                 <img class="icon" src="{% static 'pmdb/img/alert_icon.png' %}" alt="alert">
             </a>
-            <a href="#" class="icon-link-with-left-margin">
+            <a href="#" class="icon-with-left-margin">
                 <img class="icon" src="{% static 'pmdb/img/information-icon.png' %}" alt="information">
             </a>
             <div class="nav-bar__profile-container">
                 <span class="greeting">Hi, user</span>
-                <a href="#" class="icon-link-with-left-margin">
+                <a href="#" class="icon-with-left-margin">
                     <img class="icon" src="{% static 'pmdb/img/avatar_icon.png' %}" alt="profile">
                 </a>
             </div>
@@ -70,119 +71,119 @@
     </div>
 </nav>
 <div class="main-container">
-    <aside class="sidebar">
-        <div class="sidebar__tab-container sidebar__tab-container--special">
-            <div class="sidebar__tab-header sidebar__tab-header--special">
-                <div class="sidebar__tab-icon-container sidebar__tab-icon-container--special">
-                    <div class="sidebar__tab-icon-wrapper--special">
-                        <img class="sidebar__tab-icon sidebar__tab-icon--special" src="{% static 'pmdb/img/plus.png' %}" alt="plus">
+    <div class="sidebar-container">
+        <aside class="sidebar sidebar--hoverable hover-on">
+            <div class="sidebar__tab-container sidebar__tab-container--special">
+                <div class="sidebar__tab-header sidebar__tab-header--special">
+                    <div class="sidebar__tab-icon-container sidebar__tab-icon-container--special">
+                        <div class="sidebar__tab-icon-wrapper--special">
+                            <img class="sidebar__tab-icon sidebar__tab-icon--special" src="{% static 'pmdb/img/plus.png' %}" alt="plus">
+                        </div>
                     </div>
-                </div>
-                <div class="sidebar__tab-header-title sidebar__tab-header-title--special">
-                    <div class="sidebar__tab-title-wraper sidebar__tab-title-wraper--special">
-                        <span class="sidebar__tab-title sidebar__tab-title--special">Create project</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header tab-selected">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/black-light-bulb.png' %}" alt="bulb">
-                </div>
-                <div class="sidebar__tab-header-title ">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">PROJECTS</span>
-                        <img class="sidebar__tab-arrow" src="{% static 'pmdb/img/arrow.png' %}" alt="arrow">
+                    <div class="sidebar__tab-header-title sidebar__tab-header-title--special">
+                        <div class="sidebar__tab-title-wraper sidebar__tab-title-wraper--special">
+                            <span class="sidebar__tab-title sidebar__tab-title--special">Create project</span>
+                        </div>
                     </div>
                 </div>
             </div>
-            <ul class="sidebar__tab-menu">
-                <li class="sidebar__tab-menu-item">
-                    <span class="sidebar__tab-menu-item-title">License-In</span>
-                </li>
-                <li class="sidebar__tab-menu-item sidebar__tab-menu-item--vertical-space">
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header tab-selected">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/black-light-bulb.png' %}" alt="bulb">
+                    </div>
+                    <div class="sidebar__tab-header-title ">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">PROJECTS</span>
+                            <img class="sidebar__tab-arrow" src="{% static 'pmdb/img/arrow.png' %}" alt="arrow">
+                        </div>
+                    </div>
+                </div>
+                <ul class="sidebar__tab-menu">
+                    <li class="sidebar__tab-menu-item">
+                        <span class="sidebar__tab-menu-item-title">License-In</span>
+                    </li>
+                    <li class="sidebar__tab-menu-item sidebar__tab-menu-item--vertical-space">
                         <span class="sidebar__tab-menu-item-title">
                             R&D
                         </span>
-                </li>
-                <li class="sidebar__tab-menu-item sidebar__tab-menu-item--vertical-space">
+                    </li>
+                    <li class="sidebar__tab-menu-item sidebar__tab-menu-item--vertical-space">
                         <span class="sidebar__tab-menu-item-title">
                             R&D external
                         </span>
-                </li>
-            </ul>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/ruler.svg' %}" alt="templates">
-                </div>
-                <div class="sidebar__tab-header-title ">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">templates</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/ruler.svg' %}" alt="templates">
+                    </div>
+                    <div class="sidebar__tab-header-title ">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">templates</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/eye-open.svg' %}" alt="saved views">
-                </div>
-                <div class="sidebar__tab-header-title ">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">saved views</span>
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/eye-open.svg' %}" alt="saved views">
+                    </div>
+                    <div class="sidebar__tab-header-title ">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">saved views</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/share.png' %}" alt="shared views">
-                </div>
-                <div class="sidebar__tab-header-title ">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">shared views</span>
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/share.png' %}" alt="shared views">
+                    </div>
+                    <div class="sidebar__tab-header-title ">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">shared views</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/download-button.png' %}" alt="import manager">
-                </div>
-                <div class="sidebar__tab-header-title ">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">import manager</span>
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/download-button.png' %}" alt="import manager">
+                    </div>
+                    <div class="sidebar__tab-header-title ">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">import manager</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="sidebar__tab-container">
-            <div class="sidebar__tab-header">
-                <div class="sidebar__tab-icon-container">
-                    <img class="sidebar__tab-icon" src="{% static 'pmdb/img/files.png' %}" alt="reports">
-                </div>
-                <div class="sidebar__tab-header-title">
-                    <div class="sidebar__tab-title-wraper">
-                        <span class="sidebar__tab-title">reports</span>
+            <div class="sidebar__tab-container">
+                <div class="sidebar__tab-header">
+                    <div class="sidebar__tab-icon-container">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/files.png' %}" alt="reports">
+                    </div>
+                    <div class="sidebar__tab-header-title">
+                        <div class="sidebar__tab-title-wraper">
+                            <span class="sidebar__tab-title">reports</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </aside>
-    <div class="working-area">
-        <div class="workspace">
-            <div class="sheet">
+        </aside>
+    </div>
+    <div class="workspace">
+        <div class="sheet">
 
-                {% block content %} {% endblock %}
+          {% block content %} {% endblock %}
 
-            </div>
-            <div class="workspace__details"></div>
         </div>
+        <!--<div class="menu"></div>-->
     </div>
 </div>
 </body>

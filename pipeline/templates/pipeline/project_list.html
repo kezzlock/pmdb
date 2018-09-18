@@ -6,46 +6,46 @@
 {% endblock %}
 
 {% block content %}
-  <div class="sheet__dashboard">
-      <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/upload.svg' %}" alt="upload"></a>
-      </div>
-      <div class="sheet__space-filler"></div>
-      <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/edit.svg' %}" alt="edit"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
-                           alt="download"></a>
-      </div>
-      <div class="sheet__space-filler"></div>
-      <div class="sheet__search-container">
-          <a href="#"><img src="{% static 'pmdb/img/search.svg' %}" alt="search" class="sheet__icon sheet__search-icon"></a>
-          <input type="text" class="sheet__search">
-      </div>
-      <div class="sheet__space-filler"></div>
-      <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/filter.svg' %}" alt="tags"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/menu.svg' %}" alt="menu"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/columns.svg' %}"
-                           alt="table"></a>
-      </div>
-  </div>
-  <div class="sheet__table-container">
-      <table class="table">
-          <thead class="table__thead">
-            <th>ID</th>
-            <th>Project Name</th>
-            <th>Molecule</th>
-            <th>Form</th>
-            <th>Strength</th>
-            <th>Brand name</th>
-            <th>Market</th>
-            <th>Moq</th>
-          </thead>
+<div class="sheet__dashboard">
+    <div class="sheet__icons">
+        <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
+        <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/upload.svg' %}" alt="upload"></a>
+    </div>
+    <div class="sheet__space-filler"></div>
+    <div class="sheet__icons">
+        <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/edit.svg' %}" alt="edit"></a>
+        <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove"></a>
+        <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
+                         alt="download"></a>
+    </div>
+    <div class="sheet__space-filler"></div>
+    <div class="sheet__search-container">
+        <a href="#"><img src="{% static 'pmdb/img/search.svg' %}" alt="search" class="sheet__icon sheet__search-icon"></a>
+        <input type="text" class="sheet__search">
+    </div>
+    <div class="sheet__space-filler"></div>
+    <div class="sheet__icons">
+        <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/filter.svg' %}" alt="tags"></a>
+        <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/menu.svg' %}" alt="menu"></a>
+        <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/columns.svg' %}"
+                         alt="table"></a>
+    </div>
+</div>
+<div class="sheet__table-container">
+    <table class="table">
+        <thead class="table__thead">
+          <th>ID</th>
+          <th>Project Name</th>
+          <th>Molecule</th>
+          <th>Form</th>
+          <th>Strength</th>
+          <th>Brand name</th>
+          <th>Market</th>
+          <th>Moq</th>
+        </thead>
 
-          <tbody></tbody>
-      </table>
-  </div>
+        <tbody></tbody>
+    </table>
+</div>
 
 {% endblock %}

@@ -1,10 +1,12 @@
 {% load static %}
 
 <script>
-
 /* Table script */
-  $(function () {
+$(function () {
+
     var table = $('.table').DataTable({
+        //data: JSON_duza_tabela.data,
+        //columns: JSON_duza_tabela.columns,
         processing: true,
         serverSide: true,
         ajax: "{% url 'project_list_json' %}",
@@ -46,8 +48,10 @@
             $('th').addClass('table__cell--header');
             $('.table__cell--header.sorting').append('<img class="table__sort-icon" src="{% static 'pmdb/img/arrows.svg' %}">');
             $('.table__cell--header:not(:first-child)').addClass('table__cell--header-no-checkbox');
-        },
+        }
     });
+
+    $(table.table().container()).addClass('sheet__table-wrapper');
 
     $(".sheet__search").keyup(function () {
         table.search(this.value).draw();
@@ -79,5 +83,5 @@
             $('.table__select--one').prop('checked', false);
         }
     });
-  });
+});
 </script>
