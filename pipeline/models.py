@@ -149,6 +149,33 @@ class Project(models.Model):
     def get_absolute_url(self):
         return reverse('project-detail', args=[str(self.id)])
 
+    def get_fields(self, exclude_fields=None, sorted=False):
+        """
+        Return dictionary with object fields:
+            {field.verbose_name: field value, ...}
+
+        Attrs:
+
+        Waring: Relation fields are excluded
+        """
+        if not exclude_fields:
+            exclude_fields = []
+        fields_dict = {}
+        # get list of fields with excluded relation fields
+        fields = set(f for f in self._meta.get_fields()
+                     if not (f.is_relation or f.one_to_one or
+                             (f.many_to_one and f.related_model)))
+        for field in fields:
+            if field.name not in exclude_fields:
+                if hasattr(self, f"get_{field.name}_display"):
+                    fields_dict[field.name] = getattr(
+                        self, f"get_{field.name}_display")
+                else:
+                    fields_dict[field.name] = getattr(self, field.name)
+        if sorted:
+            return sorted(fields_dict.items())
+        return fields_dict.items()
+
 ### FILES OBJECTS ###
 
 
