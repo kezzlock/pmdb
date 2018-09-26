@@ -1,4 +1,5 @@
 {% load static %}
+<!--TODO: Find a way to split html file into several files (reusable parts)-->
 <!doctype html>
 <html lang="en">
 <head>
@@ -6,8 +7,9 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <!-- extra HEAD -->
+    <!-- extra HEAD top -->
     {% block extra_head_top %} {% endblock %}
+    <!-- Bootstrap CSS -->
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet"
@@ -17,21 +19,21 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
 
-    <!-- JavaScript scripts libraries -->
+    <!-- JavaScript scripts -->
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
             crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-
-    <!-- JavaScript scripts custom -->
     <script src="{% static 'pmdb/js/script.js' %}"></script>
 
-    <!-- extra HEAD -->
+    <!-- extra HEAD bottom -->
     {% block extra_head_bottom %} {% endblock %}
 
-    <title>PMDB</title>
+    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">-->
+
+    <title>Lab-gears</title>
 </head>
 <body>
 <nav class="nav-bar">
@@ -182,11 +184,153 @@
     </div>
     <div class="workspace">
         <div class="sheet">
-
-          {% block content %} {% endblock %}
-
+            {% block content %} {% endblock %}
         </div>
-        <!--<div class="menu"></div>-->
+        <div class="menu">
+            <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit">
+            <div class="details">
+                <div class="details__header-container">
+                    <div class="details__project-name-container">
+                        <span>Project details: </span><a href="#" class="details__project-name">Baclofen</a>
+                    </div>
+                    <div class="details__last-modification-container">
+                        <span>Last modification: </span><span>User1</span>, <span>Apr 24th</span> at <span>10:48</span>
+                    </div>
+                </div>
+                <div class="details__basic-informations-container">
+                    <div class="details__container-header">
+                        Basic informations
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added on</span>
+                            <span class="details__data-value">2017-01-03</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added by</span>
+                            <span class="details__data-value">User 1</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Project Manager</span>
+                            <span class="details__data-value">User 2</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added on</span>
+                            <span class="details__data-value">2017-01-03</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added by</span>
+                            <span class="details__data-value">User 1</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Project Manager</span>
+                            <span class="details__data-value">User 2</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added on</span>
+                            <span class="details__data-value">2017-01-03</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Added by</span>
+                            <span class="details__data-value">User 1</span>
+                        </div>
+                    </div>
+                    <div class="details__data-container">
+                        <div class="details__data-row">
+                            <span class="details__data-key">Project Manager</span>
+                            <span class="details__data-value">User 2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="details__files-container">
+                    <div class="details__container-header">
+                        Files
+                    </div>
+                    <div class="details__file-container">
+                        <button class="details__more-btn">
+                            <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                        </button>
+                        <div class="details__file-icon-container">
+                            <img src="{% static 'pmdb/img/pdf.svg' %}" alt="pdf" class="details__file-icon">
+                        </div>
+                        <div class="details__file-info-container">
+                            <div class="details__file-header">
+                                <a href="#" class="details__file-link">Analitics_data_HNMR.pdf</a>
+                            </div>
+                            <div class="details__file-short-info">
+                                <span class="details__file-user">User1</span>
+                                <span class="details__file-date">Oct 6th at 11:31</span>
+                            </div>
+                            <div class="details__file-long-info">
+                                This is some short description about file containing HNMR data. You can write anything
+                                there.
+                                And you test as you wish.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details__file-container">
+                        <button class="details__more-btn">
+                            <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                        </button>
+                        <div class="details__file-icon-container">
+                            <img src="{% static 'pmdb/img/doc.svg' %}" alt="pdf" class="details__file-icon">
+                        </div>
+                        <div class="details__file-info-container">
+                            <div class="details__file-header">
+                                <a href="#" class="details__file-link">Analitics_data_HNMR.pdf</a>
+                            </div>
+                            <div class="details__file-short-info">
+                                <span class="details__file-user">User1</span>
+                                <span class="details__file-date">Oct 6th at 11:31</span>
+                            </div>
+                            <div class="details__file-long-info">
+                                This is some short description about file containing HNMR data. You can write anything
+                                there.
+                                And you test as you wish.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="details__file-container">
+                        <button class="details__more-btn">
+                            <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                        </button>
+                        <div class="details__file-icon-container">
+                            <img src="{% static 'pmdb/img/txt.svg' %}" alt="pdf" class="details__file-icon">
+                        </div>
+                        <div class="details__file-info-container">
+                            <div class="details__file-header">
+                                <a href="#" class="details__file-link">
+                                    Analitics_data_HNMR.pdf
+                                </a>
+                            </div>
+                            <div class="details__file-short-info">
+                                <span class="details__file-user">User1</span>
+                                <span class="details__file-date">Oct 6th at 11:31</span>
+                            </div>
+                            <div class="details__file-long-info">
+                                This is some short description about file containing HNMR data. You can write anything
+                                there.
+                                And you test as you wish.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 </body>
