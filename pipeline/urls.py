@@ -18,7 +18,7 @@ Including another URLconf
 import filer
 from django.urls import include, path
 
-from .api import ProjectListJson
+from .api import ProjectDetailJson, ProjectListJson
 from .views import (ProjectCreateView, ProjectDeleteView, ProjectDetailView,
                     ProjectListView, ProjectUpdateView)
 
@@ -29,6 +29,10 @@ urlpatterns = [
     path('<int:pk>/update/', ProjectUpdateView.as_view(), name='project-update'),
     path('<int:pk>/delete/', ProjectDeleteView.as_view(),
          name='project-delete'),
-    path('datatable/', ProjectListJson.as_view(), name='project_list_json'),
-    path('filer/', include('filer.urls'))
+    # API
+    path('api/project/datatable/', ProjectListJson.as_view(), name='project_list_json'),
+    path('api/project/<int:pk>/', ProjectDetailJson.as_view(), name="project_detail_json"),
+    # FILER
+    path('filer/', include('filer.urls')),
+
 ]
