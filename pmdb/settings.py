@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'easy_thumbnails',
     'filer',
     'mptt',
+    # django rest framework
+    'rest_framework',
     # other
 
 ]

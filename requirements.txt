@@ -1,4 +1,5 @@
 Django==2.0.7
 pycountry
 django-datatables-view
-django-filer
+#django-filer
+djangorestframework
