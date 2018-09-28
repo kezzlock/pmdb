@@ -14,8 +14,6 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 
 """
-
-import filer
 from django.urls import include, path
 
 from .api import ProjectDetailJson, ProjectListJson
@@ -30,9 +28,9 @@ urlpatterns = [
     path('<int:pk>/delete/', ProjectDeleteView.as_view(),
          name='project-delete'),
     # API
-    path('api/project/datatable/', ProjectListJson.as_view(), name='project_list_json'),
-    path('api/project/<int:pk>/', ProjectDetailJson.as_view(), name="project_detail_json"),
-    # FILER
-    path('filer/', include('filer.urls')),
+    path('api/project/datatable/', ProjectListJson.as_view(),
+         name='project_list_json'),
+    path('api/project/<int:pk>/', ProjectDetailJson.as_view(),
+         name="project_detail_json"),
 
 ]

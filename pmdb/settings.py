@@ -45,10 +45,6 @@ INSTALLED_APPS = [
     'dropdowns',
     # dataTables
     'django_datatables_view',
-    # django filler
-    'easy_thumbnails',
-    'filer',
-    'mptt',
     # django rest framework
     'rest_framework',
     # other
@@ -135,14 +131,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# DJANGO filer
-THUMBNAIL_HIGH_RESOLUTION = True
-
-THUMBNAIL_PROCESSORS = (
-    'easy_thumbnails.processors.colorspace',
-    'easy_thumbnails.processors.autocrop',
-    #'easy_thumbnails.processors.scale_and_crop',
-    'filer.thumbnail_processors.scale_and_crop_with_subject_location',
-    'easy_thumbnails.processors.filters',
-)

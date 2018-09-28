@@ -3,7 +3,6 @@ from os import path
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
-from filer.fields.file import FilerFileField
 
 from dropdowns.models import (AtcClass, Licensor, Market, Molecule, PackType,
                               PharmaForm, TherapeuticArea)
@@ -202,32 +201,31 @@ class Project(models.Model):
 ### FILES OBJECTS ###
 
 
-class FileGroup(models.Model):
-    # required
-    name = models.CharField(
-        max_length=300, null=False, blank=False, unique=True)
-    description = models.TextField(blank=True)
-
-    def __str__(self):
-        return self.name
-
-
-class File(models.Model):
-    file = FilerFileField(null=False, blank=False, related_name="project_file",
-                          on_delete=models.CASCADE)
-
-    def default_group():
-        # get or create default group
-        return FileGroup.objects.get_or_create(name="General")[0]
-
-    group = models.ForeignKey(
-        'FileGroup', null=False, blank=False, related_name='created_by',
-        on_delete=models.CASCADE, default=default_group)
-    project = models.ForeignKey(
-        'Project', null=False, blank=False, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.file.name
-
-    def filename(self):
-        return path.basename(self.file.name)
+# class FileGroup(models.Model):
+#     # required
+#     name = models.CharField(
+#         max_length=300, null=False, blank=False, unique=True)
+#     description = models.TextField(blank=True)
+#
+#     def __str__(self):
+#         return self.name
+#
+#
+# class File(models.Model):
+#     file = models.FileField(upload_to='uploads/')
+#
+#     def default_group():
+#         # get or create default group
+#         return FileGroup.objects.get_or_create(name="General")[0]
+#
+#     group = models.ForeignKey(
+#         'FileGroup', null=False, blank=False, related_name='created_by',
+#         on_delete=models.CASCADE, default=default_group)
+#     project = models.ForeignKey(
+#         'Project', null=False, blank=False, on_delete=models.CASCADE)
+#
+#     def __str__(self):
+#         return self.file.name
+#
+#     def filename(self):
+#         return path.basename(self.file.name)
