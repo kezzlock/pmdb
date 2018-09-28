@@ -1,6 +1,29 @@
 {% load static %}
 
 <script>
+
+/* Detail script */
+
+function showDetails(id) {
+  if (id === undefined) {
+      id = 1;
+  }
+  $.ajax({
+    url: "{% url 'project_detail_json' 1 %}".replace(/1/, id.toString()),
+    dataType: "json",
+    success: function(data) {
+      Object.keys(data).forEach(function(key) {
+          console.log('Key : ' + key + ', Value : ' + data[key])
+          $('#details__'+key).text(data[key]);
+      });
+      // $('#name').text(data.name);
+      // $('#last_name').text(data.last_name);
+      // $('#age').text(data.age);
+      // $('#gender').text(data.gender);
+    }
+  });
+}
+
 /* Table script */
 $(function () {
 
