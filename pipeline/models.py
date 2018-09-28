@@ -176,6 +176,25 @@ class Project(models.Model):
             return sorted(fields_dict.items())
         return fields_dict.items()
 
+    @classmethod
+    def get_fields_names(cls, exclude_fields=None, sort=False):
+        """
+        Return set with model fields names
+
+        Attrs:
+
+        Waring: Relation fields are excluded
+        """
+        if not exclude_fields:
+            exclude_fields = []
+        # get list of fields with excluded relation fields
+        fields = set(f.name for f in cls._meta.get_fields()
+                     if not (f.is_relation or f.one_to_one or
+                             (f.many_to_one and f.related_model)) and not f.name in exclude_fields)
+        if sort:
+            return sorted(list(fields))
+        return fields
+
 ### FILES OBJECTS ###
 
 

@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block extra_head_bottom %}
-  {% include "pipeline/table_script.html" %}
+  {% include "pipeline/scripts.html" %}
 {% endblock %}
 
 {% block content %}
@@ -48,4 +48,107 @@
     </table>
 </div>
 
+{% endblock %}
+
+{% block menu %}
+<div class="menu">
+    <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit">
+    <div class="details">
+        <div class="details__header-container">
+            <div class="details__project-name-container">
+                <span>Project details: </span><a href="#" class="details__project-name" id="details__name">Baclofen</a>
+            </div>
+            <div class="details__last-modification-container">
+                <span>Last modification: </span><span id="details__modified_by">User1</span>, <span id="details__modify_date">Apr 24th</span>
+            </div>
+        </div>
+        <div class="details__basic-informations-container">
+            <div class="details__container-header">
+                Basic informations
+            </div>
+            {% for field in fields %}
+              <div class="details__data-container">
+                  <div class="details__data-row">
+                      <span class="details__data-key">{{ field }}</span>
+                      <span class="details__data-value" id="details__{{ field }}">-</span>
+                  </div>
+              </div>
+            {% endfor %}
+
+        </div>
+        <div class="details__files-container">
+            <div class="details__container-header">
+                Files
+            </div>
+            <div class="details__file-container">
+                <button class="details__more-btn">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                </button>
+                <div class="details__file-icon-container">
+                    <img src="{% static 'pmdb/img/pdf.svg' %}" alt="pdf" class="details__file-icon">
+                </div>
+                <div class="details__file-info-container">
+                    <div class="details__file-header">
+                        <a href="#" class="details__file-link">Analitics_data_HNMR.pdf</a>
+                    </div>
+                    <div class="details__file-short-info">
+                        <span class="details__file-user">User1</span>
+                        <span class="details__file-date">Oct 6th at 11:31</span>
+                    </div>
+                    <div class="details__file-long-info">
+                        This is some short description about file containing HNMR data. You can write anything
+                        there.
+                        And you test as you wish.
+                    </div>
+                </div>
+            </div>
+            <div class="details__file-container">
+                <button class="details__more-btn">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                </button>
+                <div class="details__file-icon-container">
+                    <img src="{% static 'pmdb/img/doc.svg' %}" alt="pdf" class="details__file-icon">
+                </div>
+                <div class="details__file-info-container">
+                    <div class="details__file-header">
+                        <a href="#" class="details__file-link">Analitics_data_HNMR.pdf</a>
+                    </div>
+                    <div class="details__file-short-info">
+                        <span class="details__file-user">User1</span>
+                        <span class="details__file-date">Oct 6th at 11:31</span>
+                    </div>
+                    <div class="details__file-long-info">
+                        This is some short description about file containing HNMR data. You can write anything
+                        there.
+                        And you test as you wish.
+                    </div>
+                </div>
+            </div>
+            <div class="details__file-container">
+                <button class="details__more-btn">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                </button>
+                <div class="details__file-icon-container">
+                    <img src="{% static 'pmdb/img/txt.svg' %}" alt="pdf" class="details__file-icon">
+                </div>
+                <div class="details__file-info-container">
+                    <div class="details__file-header">
+                        <a href="#" class="details__file-link">
+                            Analitics_data_HNMR.pdf
+                        </a>
+                    </div>
+                    <div class="details__file-short-info">
+                        <span class="details__file-user">User1</span>
+                        <span class="details__file-date">Oct 6th at 11:31</span>
+                    </div>
+                    <div class="details__file-long-info">
+                        This is some short description about file containing HNMR data. You can write anything
+                        there.
+                        And you test as you wish.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

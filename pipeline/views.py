@@ -31,6 +31,11 @@ class ProjectListView(ListView):
     #     context['columns_json'] = json_dumps.replace('\"', '')
     #     return context
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['fields'] = Project.get_fields_names()
+        return context
+
 
 class ProjectDetailView(DetailView):
     model = Project
