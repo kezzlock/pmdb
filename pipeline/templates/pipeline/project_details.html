@@ -21,7 +21,7 @@
   <div class="table-responsive">
     <table class="table table-hover table-details">
       <tbody>
-        {% for field_name, field_value in object.get_fields %}
+        {% for field_name, field_value in object.get_fields_dict %}
             <tr>
                 <th>{% get_verbose_field_name object field_name %}</th>
                 <td>{{ field_value | default:"" }}</td>
