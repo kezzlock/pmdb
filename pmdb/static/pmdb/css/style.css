@@ -104,7 +104,7 @@ body { height: 100vh; display: -ms-flexbox; display: flex; -ms-flex-direction: c
 /* Workspace rules */
 .workspace { -ms-flex: 1; flex: 1; overflow: hidden; display: -ms-flexbox; display: flex; -ms-flex-pack: center; justify-content: center; }
 
-.sheet { display: -ms-inline-flexbox; display: inline-flex; max-width: 100%; -ms-flex-direction: column; flex-direction: column; padding: 0 10px 10px 10px; }
+.sheet { display: -ms-inline-flexbox; display: inline-flex; max-width: 100%; min-width: 70%; -ms-flex-direction: column; flex-direction: column; padding: 0 10px 10px 10px; }
 
 .sheet__dashboard { border-bottom: solid 2px #B9BAB6; padding: 5px 40px; display: -ms-flexbox; display: flex; -ms-flex-align: center; align-items: center; }
 
