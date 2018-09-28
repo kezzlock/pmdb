@@ -33,7 +33,7 @@ class ProjectListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['fields'] = Project.get_fields_names()
+        context['fields'] = Project.get_fields(sort=True)
         return context
 
 
