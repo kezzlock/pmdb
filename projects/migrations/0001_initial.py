@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField(blank=True)),
                 ('project_type', models.IntegerField(choices=[(0, 'License-in'), (1, 'R&D'), (2, 'R&D external')], default=0)),
                 ('contract_type', models.IntegerField(choices=[(0, 'LSA'), (1, 'LA+TT'), (2, 'DA')], default=0)),
-                ('status', models.IntegerField(blank=True, choices=[(1, 'pre-PMB'), (2, 'pipeline'), (3, 'portfolio'), (0, 'terminated')], default=2, null=True)),
+                ('status', models.IntegerField(blank=True, choices=[(1, 'pre-PMB'), (2, 'projects'), (3, 'portfolio'), (0, 'terminated')], default=2, null=True)),
                 ('prescription_category', models.IntegerField(choices=[(0, 'OTC'), (1, 'Rx'), (2, 'MD'), (3, 'DS')], default=1)),
                 ('priority', models.IntegerField(blank=True, choices=[(0, 'tbc'), (1, 'Low'), (2, 'Normal'), (3, 'High')], default=0, null=True)),
                 ('pack_size', models.TextField(blank=True)),

@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'django_extensions',
     # projects
     'pmdb',
-    'pipeline',
+    'projects',
     'dropdowns',
     # dataTables
     'django_datatables_view',

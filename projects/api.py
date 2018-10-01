@@ -2,8 +2,8 @@ from django.utils.html import escape
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from rest_framework import generics
 
-from pipeline.models import Project
-from pipeline.serializers import ProjectSerializer
+from projects.models import Project
+from projects.serializers import ProjectSerializer
 
 
 class ProjectListJson(BaseDatatableView):

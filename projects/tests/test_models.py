@@ -3,7 +3,7 @@ from django.db import models
 from django.test import TestCase
 from django.utils import timezone
 
-from pipeline.models import Project
+from projects.models import Project
 
 
 class RobjectModelTestCase(TestCase):

@@ -16,11 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-# import pipeline
+# import projects
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pipeline.urls')),
+    path('', include('projects.urls')),
     path('', include('dropdowns.urls')),
     path('api-auth/', include('rest_framework.urls')),
 ]

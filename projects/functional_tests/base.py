@@ -5,7 +5,7 @@ from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from django.test import override_settings
 from selenium import webdriver
 
-from pipeline.models import Project
+from projects.models import Project
 
 
 @override_settings(DEBUG=False)

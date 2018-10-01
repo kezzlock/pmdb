@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from pipeline.models import Project
+from projects.models import Project
 
 
 class ProjectSerializer(serializers.ModelSerializer):

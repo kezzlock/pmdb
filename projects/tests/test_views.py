@@ -3,8 +3,8 @@ from django.test import Client, TestCase
 from django.urls import reverse
 from django.utils import timezone
 
-from pipeline.forms import ProjectCreateForm
-from pipeline.models import Project
+from projects.forms import ProjectCreateForm
+from projects.models import Project
 
 
 class BasicTestCase(TestCase):
@@ -48,7 +48,7 @@ class ProjectListViewTestCase(BasicTestCase):
 
     def test_template_used(self):
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, "pipeline/project_list.html")
+        self.assertTemplateUsed(response, "projects/project_list.html")
 
     def test_view_response(self):
         response = self.client.get(self.url)
@@ -77,7 +77,7 @@ class ProjectDetailViewTestCase(BasicTestCase):
 
     def test_template_used(self):
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, "pipeline/project_details.html")
+        self.assertTemplateUsed(response, "projects/project_details.html")
 
     def test_view_response(self):
         response = self.client.get(self.url)
@@ -100,7 +100,7 @@ class ProjectCreateViewTestCase(BasicTestCase):
 
     def test_template_used(self):
         response = self.client.get(self.url)
-        self.assertTemplateUsed(response, "pipeline/project_create.html")
+        self.assertTemplateUsed(response, "projects/project_create.html")
 
     def test_form_instance_in_context(self):
         response = self.client.get(self.url)
@@ -131,7 +131,7 @@ class ProjectDeleteViewTestCase(BasicTestCase):
     def test_view_renders_delete_confirm_template(self):
         response = self.client.get(self.url)
         self.assertTemplateUsed(
-            response, "pipeline/project_confirm_delete.html")
+            response, "projects/project_confirm_delete.html")
 
     def test_view_add_object_to_context(self):
         response = self.client.get(self.url)

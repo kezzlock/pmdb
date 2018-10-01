@@ -5,13 +5,13 @@ from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from pipeline.forms import ProjectCreateForm
-from pipeline.models import Project
+from projects.forms import ProjectCreateForm
+from projects.models import Project
 
 
 class ProjectListView(ListView):
     model = Project
-    template_name = 'pipeline/project_list.html'
+    template_name = 'projects/project_list.html'
     # columns = ['id', 'name', 'molecule', 'form', 'strength', 'brand_name',
     #            'market', 'moq']
 
@@ -39,20 +39,20 @@ class ProjectListView(ListView):
 
 class ProjectDetailView(DetailView):
     model = Project
-    template_name = 'pipeline/project_details.html'
+    template_name = 'projects/project_details.html'
 
 
 class ProjectCreateView(CreateView):
     model = Project
     form_class = ProjectCreateForm
-    template_name = 'pipeline/project_create.html'
+    template_name = 'projects/project_create.html'
     success_url = reverse_lazy('project-list')
 
 
 class ProjectUpdateView(UpdateView):
     model = Project
     form_class = ProjectCreateForm
-    template_name = 'pipeline/project_update.html'
+    template_name = 'projects/project_update.html'
     success_url = reverse_lazy('project-list')
 
 
