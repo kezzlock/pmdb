@@ -182,8 +182,6 @@ class Project(models.Model):
             {field.name:field.verbose_name, ...}
 
         Attrs:
-
-        Waring: Relation fields are excluded
         """
         if not exclude_fields:
             exclude_fields = []
