@@ -1,6 +1,19 @@
+/* Side menu script*/
+
 $(function () {
     $('.menu__exit-icon').click(function () {
-        $('.menu').hide();
+        // child will be hide after container
+        $('.menu').hide(0, function () {
+            $('.menu__content').hide();
+        });
+    });
+
+    $('.sheet__show-column-control-menu').click(function () {
+        $('.menu__content').hide();
+        // child will show after parent
+        $('.menu').show(0, function () {
+            $('.columns-control').show();
+        });
     });
 });
 /* Sidebar script */
