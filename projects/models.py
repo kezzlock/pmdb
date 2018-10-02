@@ -176,17 +176,17 @@ class Project(models.Model):
         return fields_dict.items()
 
     @classmethod
-    def get_fields(cls, exclude_fields=None, sort=False):
+    def get_fields(cls, exclude=None, sort=False):
         """
         Return dictionary with fields names:
             {field.name:field.verbose_name, ...}
 
         Attrs:
         """
-        if not exclude_fields:
-            exclude_fields = []
+        if not exclude:
+            exclude = []
         # get list of fields with excluded relation fields
-        fields = set(f for f in cls._meta.get_fields())
+        fields = set(f for f in cls._meta.get_fields() if f.name not in exclude)
         if sort:
             return sorted(list(fields), key=lambda x: x.name)
         return fields
