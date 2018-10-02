@@ -28,7 +28,7 @@ $(function () {
     var isSidebarExpanded = false;
     var countOpenMenus = 0;
 
-    var sidebarMouseenterHandler = function (event, delay = 600) {
+    var sidebarMouseenterHandler = function (event, delay = 100) {
         timer = setTimeout(function () {
             if (isSidebarExpanded === false) {
                 $('.sidebar__tab-icon-wrapper--special').addClass('sidebar__tab-icon-wrapper--special-hover')
