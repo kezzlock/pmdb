@@ -186,7 +186,8 @@ class Project(models.Model):
         if not exclude:
             exclude = []
         # get list of fields with excluded relation fields
-        fields = set(f for f in cls._meta.get_fields() if f.name not in exclude)
+        fields = set(f for f in cls._meta.get_fields()
+                     if f.name not in exclude)
         if sort:
             return sorted(list(fields), key=lambda x: x.name)
         return fields
@@ -194,7 +195,8 @@ class Project(models.Model):
     @classmethod
     def get_integer_choices_fields(cls):
         # "---------"
-        fields = set(f for f in cls._meta.get_fields() if (f.get_internal_type() == 'IntegerField'))
+        fields = set(f for f in cls._meta.get_fields() if (
+            f.get_internal_type() == 'IntegerField'))
         return fields
 ### FILES OBJECTS ###
 
