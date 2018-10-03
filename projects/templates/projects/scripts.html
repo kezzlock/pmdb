@@ -26,8 +26,10 @@ $(function () {
     var table = $('.table').DataTable({
         //data: JSON_duza_tabela.data,
         //columns: JSON_duza_tabela.columns,
+        searching: true,
         processing: true,
         serverSide: true,
+        stateSave: true,
         ajax: "{% url 'project_list_json' %}",
         columnDefs: [
             {
