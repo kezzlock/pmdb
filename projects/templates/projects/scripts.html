@@ -13,7 +13,6 @@ function showDetails(id) {
     dataType: "json",
     success: function(data) {
       Object.keys(data).forEach(function(key) {
-          console.log('Key : ' + key + ', Value : ' + data[key])
           $('#details__'+key).text(data[key]);
       });
     }
@@ -29,7 +28,7 @@ $(function () {
         searching: true,
         processing: true,
         serverSide: true,
-        stateSave: true,
+        serverSave: true,
         ajax: "{% url 'project_list_json' %}",
         columnDefs: [
             {
@@ -87,7 +86,7 @@ $(function () {
         table.search(this.value).draw();
     });
 
-    $('th.table__cell').click(function () {
+    $('.sorting.table__cell--header.table__cell--header-no-checkbox').click(function () {
         $('.table__sort-icon-sorted')
             .replaceWith('<img class="table__sort-icon" src="{% static 'pmdb/img/arrows.svg' %}">');
 
