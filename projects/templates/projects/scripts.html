@@ -87,7 +87,7 @@ $(function () {
         table.search(this.value).draw();
     });
 
-    $('.sorting.table__cell--header.table__cell--header-no-checkbox').click(function () {
+    $('th.table__cell').click(function () {
         $('.table__sort-icon-sorted')
             .replaceWith('<img class="table__sort-icon" src="{% static 'pmdb/img/arrows.svg' %}">');
 
