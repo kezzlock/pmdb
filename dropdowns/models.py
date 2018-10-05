@@ -91,6 +91,19 @@ class PharmaForm(models.Model):
         return self.type
 
 
+class ProductCategory(models.Model):
+    """Django data model ProductCategory"""
+
+    type = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Product Category'
+        verbose_name_plural = 'Product Categorys'
+
+    def __str__(self):
+        return str(self.id)
+
+
 class TherapeuticArea(models.Model):
     """List of all Therapeutic Areas."""
 

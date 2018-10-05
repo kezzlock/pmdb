@@ -81,7 +81,8 @@ class Project(models.Model):
         max_length=300, null=False, blank=False)  # required
     molecule = models.ForeignKey(
         Molecule, on_delete=models.CASCADE)  # required
-    form = models.ForeignKey(PharmaForm, on_delete=models.CASCADE)  # required
+    pharmaceutical_form = models.ForeignKey(PharmaForm, on_delete=models.CASCADE)  # required
+    # product_category TODO:
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
@@ -106,7 +107,6 @@ class Project(models.Model):
     atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
                                   on_delete=models.CASCADE)
     pack_size = models.TextField(blank=True)
-
     pact_type = models.ForeignKey(PackType, blank=True, null=True,
                                   on_delete=models.CASCADE)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
@@ -127,7 +127,32 @@ class Project(models.Model):
     ebitda_percent = models.DecimalField(null=True, blank=True, max_digits=5,
                                          decimal_places=2)
     # timelines plan
-
+    pmb_approval = models.DateField(null=True, blank=True)
+    agreement = models.DateField(null=True, blank=True)
+    project_start = models.DateField(null=True, blank=True)
+    prototype_approved = models.DateField(null=True, blank=True)
+    registration_batches_ready = models.DateField(null=True, blank=True)
+    dossier_availability = models.DateField(null=True, blank=True)
+    dossier_submission = models.DateField(null=True, blank=True)
+    ma_granted = models.DateField(null=True, blank=True)
+    artwork_approval = models.DateField(null=True, blank=True)
+    product_in_dsv = models.DateField(null=True, blank=True)
+    launch_date = models.DateField(null=True, blank=True)
+    status_comment = models.TextField(blank=True)
+    # timelines current status
+    pmb_approval_current = models.DateField(null=True, blank=True)
+    agreement_current = models.DateField(null=True, blank=True)
+    project_start_current = models.DateField(null=True, blank=True)
+    prototype_approved_current = models.DateField(null=True, blank=True)
+    registration_batches_ready_current = models.DateField(null=True,
+                                                          blank=True)
+    dossier_availability_current = models.DateField(null=True, blank=True)
+    dossier_submission_current = models.DateField(null=True, blank=True)
+    ma_granted_current = models.DateField(null=True, blank=True)
+    artwork_approval_current = models.DateField(null=True, blank=True)
+    product_in_dsv_current = models.DateField(null=True, blank=True)
+    launch_date_current = models.DateField(null=True, blank=True)
+    status_comment_current = models.TextField(blank=True)
     # risks
     risk_type = models.IntegerField(choices=RISK_CHOICES, default=1, null=True,
                                     blank=True)
@@ -141,6 +166,35 @@ class Project(models.Model):
     # Licensing agreement summary
     licensor = models.ForeignKey(to=Licensor, blank=True, null=True,
                                  on_delete=models.CASCADE)
+    maq = models.CharField(max_length=300, blank=True)
+    supply_price = models.TextField(blank=True)
+    floor_price = models.FloatField(null=True, blank=True, default=None)
+    # TODO: pole wyboru dla waluty:
+    floor_price_currency = models.CharField(max_length=300, blank=True)
+    reconciliation = models.NullBooleanField(blank=True)
+    reconciliation_comment = models.TextField(blank=True)
+    lead_time_launch = models.TextField(blank=True)
+    lead_time_commercial = models.TextField(blank=True)
+    supply_period = models.FloatField(null=True, blank=True, default=None)
+    automatic_prolongation = models.NullBooleanField(blank=True)
+    prolongation_period = models.FloatField(
+        null=True, blank=True, default=None)
+    agreement_expiry = models.TextField(blank=True)
+    agreement_expiry_date = models.DateField(null=True, blank=True)
+    notice_period = models.FloatField(null=True, blank=True, default=None)
+    # delivery_terms TODO:
+    manufacturing_site = models.TextField(blank=True)
+    batch_release_site = models.TextField(blank=True)
+    rolling_forecast = models.TextField(blank=True)
+    inventory_level = models.TextField(blank=True)
+    payment_terms = models.FloatField(null=True, blank=True, default=None)
+    exclusive_suplies = models.NullBooleanField(blank=True)
+    exclusivity_period = models.FloatField(null=True, blank=True, default=None)
+    # agreement_type
+    agreement_number_eou = models.CharField(max_length=300, blank=True)
+    # registration_strategy
+    variation_cost = models.TextField(blank=True)
+    additional_costs = models.TextField(blank=True)
 
     def __str__(self):
         return self.name
