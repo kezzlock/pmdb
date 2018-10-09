@@ -13,7 +13,9 @@ function showDetails(id) {
     dataType: "json",
     success: function(data) {
       Object.keys(data).forEach(function(key) {
-          $('#details__'+key).text(data[key]);
+          if ( data[key] !== null && data[key] !== "" ){
+            $('#details__'+key).text(data[key]);
+          }
       });
     }
   });
