@@ -39,13 +39,16 @@ class ProjectSerializer(serializers.ModelSerializer):
     created_by = serializers.SerializerMethodField('get_creted_by_full_name')
     modified_by = serializers.SerializerMethodField('get_modified_by_full_name')
     molecule = serializers.StringRelatedField()
-    form = serializers.StringRelatedField()
+    pharmaceutical_form = serializers.StringRelatedField()
     market = serializers.StringRelatedField()
     manager = serializers.SerializerMethodField('get_manager_full_name')
     therapeutic_area = serializers.StringRelatedField()
     atc_class = serializers.StringRelatedField()
     pact_type = serializers.StringRelatedField()
     licensor = serializers.StringRelatedField()
+    product_category = serializers.StringRelatedField()
+    otc_atc2_class = serializers.StringRelatedField()
+    form = = serializers.StringRelatedField()
 
     def get_creted_by_full_name(self, obj):
         user = obj.created_by
