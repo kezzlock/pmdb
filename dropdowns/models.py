@@ -15,6 +15,18 @@ class AtcClass(models.Model):
     def __str__(self):
         return str(f"{self.code} {self.type}")
 
+
+class DeliveryTerm(models.Model):
+    """Django data model DeliveryTerms"""
+
+    class Meta:
+        verbose_name = 'Delivery Terms'
+        verbose_name_plural = 'Delivery Terms'
+
+    def __str__(self):
+        return str(self.id)
+
+
 class FormNFC12(models.Model):
     """Django data model Form NFC12"""
 
@@ -25,7 +37,7 @@ class FormNFC12(models.Model):
         verbose_name_plural = 'Forms NFC12'
 
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 class Licensor(models.Model):

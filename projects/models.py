@@ -4,9 +4,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
-from dropdowns.models import (AtcClass, FormNFC12, Licensor, Market, Molecule,
-                              OtcAtc2Class, PackType, PharmaForm,
-                              ProductCategory, TherapeuticArea)
+from dropdowns.models import (AtcClass, DeliveryTerm, FormNFC12, Licensor,
+                              Market, Molecule, OtcAtc2Class, PackType,
+                              PharmaForm, ProductCategory, TherapeuticArea)
 
 ### main object model ###
 
@@ -189,7 +189,8 @@ class Project(models.Model):
     agreement_expiry = models.TextField(blank=True)
     agreement_expiry_date = models.DateField(null=True, blank=True)
     notice_period = models.FloatField(null=True, blank=True, default=None)
-    # delivery_terms TODO:
+    delivery_terms = models.ForeignKey(
+        DeliveryTerm, blank=True, null=True, on_delete=models.CASCADE)
     manufacturing_site = models.TextField(blank=True)
     batch_release_site = models.TextField(blank=True)
     rolling_forecast = models.TextField(blank=True)
