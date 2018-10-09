@@ -4,8 +4,9 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
-from dropdowns.models import (AtcClass, Licensor, Market, Molecule, PackType,
-                              PharmaForm, TherapeuticArea)
+from dropdowns.models import (AtcClass, FormNFC12, Licensor, Market, Molecule,
+                              OtcAtc2Class, PackType, PharmaForm,
+                              ProductCategory, TherapeuticArea)
 
 ### main object model ###
 
@@ -81,8 +82,12 @@ class Project(models.Model):
         max_length=300, null=False, blank=False)  # required
     molecule = models.ForeignKey(
         Molecule, on_delete=models.CASCADE)  # required
-    pharmaceutical_form = models.ForeignKey(PharmaForm, on_delete=models.CASCADE)  # required
-    # product_category TODO:
+    pharmaceutical_form = models.ForeignKey(
+        PharmaForm, on_delete=models.CASCADE)  # required
+    form = models.ForeignKey(
+        FormNFC12, blank=True, null=True, on_delete=models.CASCADE)  # NFC12
+    product_category = models.ForeignKey(
+        ProductCategory, blank=True, null=True, on_delete=models.CASCADE)
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
@@ -104,8 +109,10 @@ class Project(models.Model):
                                          on_delete=models.CASCADE)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
                                    null=True, blank=True)
-    atc_class = models.ForeignKey(AtcClass, blank=True, null=True,
-                                  on_delete=models.CASCADE)
+    atc3_class = models.ForeignKey(AtcClass, blank=True, null=True,
+                                   on_delete=models.CASCADE)
+    otc_atc2_class = models.ForeignKey(OtcAtc2Class, blank=True, null=True,
+                                       on_delete=models.CASCADE)
     pack_size = models.TextField(blank=True)
     pact_type = models.ForeignKey(PackType, blank=True, null=True,
                                   on_delete=models.CASCADE)
