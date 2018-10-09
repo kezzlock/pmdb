@@ -15,6 +15,18 @@ class AtcClass(models.Model):
     def __str__(self):
         return str(f"{self.code} {self.type}")
 
+class FormNFC12(models.Model):
+    """Django data model Form NFC12"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Form NFC12'
+        verbose_name_plural = 'Forms NFC12'
+
+    def __str__(self):
+        return str(self.id)
+
 
 class Licensor(models.Model):
     """Django data model Licensors"""
@@ -63,6 +75,20 @@ class Molecule(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class OtcAtc2Class(models.Model):
+    """Django data model OtcAtc2Class"""
+
+    code = models.CharField(max_length=6, null=False, blank=False)
+    type = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'OTC ATC-2 Class'
+        verbose_name_plural = 'OTC ATC-2 Classes'
+
+    def __str__(self):
+        return str(f"{self.code} {self.type}")
 
 
 class PackType(models.Model):
