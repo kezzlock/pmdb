@@ -48,7 +48,7 @@ class ProjectSerializer(serializers.ModelSerializer):
     licensor = serializers.StringRelatedField()
     product_category = serializers.StringRelatedField()
     otc_atc2_class = serializers.StringRelatedField()
-    form = = serializers.StringRelatedField()
+    form = serializers.StringRelatedField()
 
     def get_creted_by_full_name(self, obj):
         user = obj.created_by
