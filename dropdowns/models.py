@@ -2,6 +2,19 @@ import pycountry
 from django.db import models
 
 
+class Agreement(models.Model):
+    """Django data model Agreement"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'Agreement'
+        verbose_name_plural = 'Agreements'
+
+    def __str__(self):
+        return str(self.id)
+
+
 class AtcClass(models.Model):
     """Django data model AtcClass"""
 
@@ -18,6 +31,8 @@ class AtcClass(models.Model):
 
 class DeliveryTerm(models.Model):
     """Django data model DeliveryTerms"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
 
     class Meta:
         verbose_name = 'Delivery Terms'
@@ -137,6 +152,19 @@ class ProductCategory(models.Model):
     class Meta:
         verbose_name = 'Product Category'
         verbose_name_plural = 'Product Categorys'
+
+    def __str__(self):
+        return str(self.id)
+
+
+class RegistrationStrategy(models.Model):
+    """Django data model RegistrationStrategy"""
+
+    name = models.CharField(max_length=300, null=False, blank=False)
+
+    class Meta:
+        verbose_name = 'RegistrationStrategy'
+        verbose_name_plural = 'RegistrationStrategys'
 
     def __str__(self):
         return str(self.id)

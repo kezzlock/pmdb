@@ -4,9 +4,10 @@ from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
 
-from dropdowns.models import (AtcClass, DeliveryTerm, FormNFC12, Licensor,
-                              Market, Molecule, OtcAtc2Class, PackType,
-                              PharmaForm, ProductCategory, TherapeuticArea)
+from dropdowns.models import (Agreement, AtcClass, DeliveryTerm, FormNFC12,
+                              Licensor, Market, Molecule, OtcAtc2Class,
+                              PackType, PharmaForm, ProductCategory,
+                              RegistrationStrategy, TherapeuticArea)
 
 ### main object model ###
 
@@ -198,9 +199,11 @@ class Project(models.Model):
     payment_terms = models.FloatField(null=True, blank=True, default=None)
     exclusive_suplies = models.NullBooleanField(blank=True)
     exclusivity_period = models.FloatField(null=True, blank=True, default=None)
-    # agreement_type
+    agreement_type = models.ForeignKey(
+        Agreement, blank=True, null=True, on_delete=models.CASCADE)
     agreement_number_eou = models.CharField(max_length=300, blank=True)
-    # registration_strategy
+    registration_strategy = models.ForeignKey(
+        RegistrationStrategy, blank=True, null=True, on_delete=models.CASCADE)
     variation_cost = models.TextField(blank=True)
     additional_costs = models.TextField(blank=True)
 
