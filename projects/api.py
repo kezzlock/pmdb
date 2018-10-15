@@ -34,7 +34,7 @@ class ProjectListJson(BaseDatatableView):
     # 'status', 'prescription_category', 'therapeutic_area',
     # 'priority', 'atc_class', 'pack_size', 'pact_type', 'shelf_life',]
     order_columns = ['', 'name', 'molecule.name', 'pharmaceutical_form',
-               'strength', 'brand_name', 'market.name', 'moq']
+                     'strength', 'brand_name', 'market.name', 'moq']
 
     def render_column(self, row, column):
         """ Renders a column on a row.
@@ -115,7 +115,15 @@ class ProjectListJson(BaseDatatableView):
         return qs
 
 
-class ProjectDetailJson(generics.RetrieveUpdateDestroyAPIView):
+class ProjectDetailJson(generics.RetrieveAPIView):
+    """
+    Retrieve, update or delete a project instance.
+    """
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+
+class ProjectCreateJson(generics.CreateAPIView):
     """
     Retrieve, update or delete a project instance.
     """
