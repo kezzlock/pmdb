@@ -7,6 +7,7 @@ from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
 
 from projects.forms import ProjectCreateForm
 from projects.models import Project
+from projects.serializers import ProjectSerializer
 
 
 class ProjectListView(ListView):
@@ -33,9 +34,12 @@ class ProjectListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # add model fields to context
         exclude_fields = ["modified_by", "modify_date", "id", "name"]
         context['fields'] = Project.get_fields(
             sort=True, exclude=exclude_fields)
+        # add serializer to context
+        context['serializer'] = ProjectSerializer
         return context
 
 

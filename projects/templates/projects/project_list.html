@@ -1,5 +1,6 @@
 {% extends "pmdb/base.html" %}
 {% load static %}
+{% load rest_framework %}
 
 {% block extra_head_bottom %}
   {% include "projects/scripts.html" %}
@@ -256,9 +257,11 @@
             <span class="menu-header__header">Create new project</span>
         </div>
         <div class="menu-content">
+
             <form method="post" action="{% url 'project_create_json' %}" class="manipulate-form">
               {% csrf_token %}
-                <div class="form-group required">
+              {% render_form serializer template_pack='drfformbootstrap4/vertical' %}
+                {% comment %} <div class="form-group required">
                     <label for="manipulate-form__api-control" class="control-label">API</label>
                     <input type="text" class="form-control" id="manipulate-form__api-control">
                 </div>
@@ -337,7 +340,7 @@
                 <div class="form-group">
                     <label for="manipulate-form__mah-control" class="control-label">MAH</label>
                     <input type="text" class="form-control" id="manipulate-form__mah-control">
-                </div>
+                </div> {% endcomment %}
                 <div class="row">
                     <div class="col-6  offset-6">
                         <button type="submit" class="btn btn-block manipulate-form__submit-btn">Save</button>
