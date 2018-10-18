@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django_datatables_view',
     # django rest framework
     'rest_framework',
+    'drfformbootstrap4',
     # other
 
 ]
