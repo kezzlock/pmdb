@@ -59,8 +59,9 @@ class Project(models.Model):
         (HIGH, 'High'),
     )
     # status choices
-    TERMINATED, PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2, 3)
+    DRAFT, PREPMB, PIPELINE, PORTFOLIO, TERMINATED = (0, 1, 2, 3, 4)
     STATUS_CHOICES = (
+        (DRAFT, 'draft')
         (PREPMB, 'pre-PMB'),
         (PIPELINE, 'pipeline'),
         (PORTFOLIO, 'portfolio'),
@@ -101,7 +102,7 @@ class Project(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name="manager")
     contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
-    status = models.IntegerField(choices=STATUS_CHOICES, default=PIPELINE,
+    status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT,
                                  null=True, blank=True)
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
