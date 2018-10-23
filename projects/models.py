@@ -61,7 +61,7 @@ class Project(models.Model):
     # status choices
     DRAFT, PREPMB, PIPELINE, PORTFOLIO, TERMINATED = (0, 1, 2, 3, 4)
     STATUS_CHOICES = (
-        (DRAFT, 'draft')
+        (DRAFT, 'draft'),
         (PREPMB, 'pre-PMB'),
         (PIPELINE, 'pipeline'),
         (PORTFOLIO, 'portfolio'),
