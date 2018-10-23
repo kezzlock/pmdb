@@ -1,8 +1,8 @@
 import re
 
 from django.db.models import CharField, ForeignKey, Q, TextField
-from django.utils.html import escape
 from django.utils import timezone
+from django.utils.html import escape
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from rest_framework import generics
 
@@ -118,7 +118,7 @@ class ProjectListJson(BaseDatatableView):
 
 class ProjectDetailJson(generics.RetrieveAPIView):
     """
-    Retrieve, update or delete a project instance.
+    Retrieve a project instance.
     """
     queryset = Project.objects.all()
     serializer_class = ProjectDetailSerializer
@@ -126,7 +126,7 @@ class ProjectDetailJson(generics.RetrieveAPIView):
 
 class ProjectCreateJson(generics.CreateAPIView):
     """
-    Retrieve, update or delete a project instance.
+    Create a project instance.
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
@@ -134,4 +134,15 @@ class ProjectCreateJson(generics.CreateAPIView):
     def perform_create(self, serializer):
         now = timezone.now()
         user = self.request.user
-        serializer.save(created_by=user, create_date = now, modify_by=user)
+        serializer.save(created_by=user, create_date=now, modify_by=user)
+
+
+class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
+    """docstring for ProjectUpdateJson."""
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+    def perform_update(self, serializer):
+        now = timezone.now()
+        user = self.request.user
+        serializer.save(modify_by=user, modify_date=now)

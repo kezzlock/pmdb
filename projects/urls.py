@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.urls import include, path
 
-from .api import ProjectCreateJson, ProjectDetailJson, ProjectListJson
+from .api import (ProjectCreateJson, ProjectDetailJson, ProjectListJson,
+                  ProjectUpdateJson)
 from .views import (ProjectCreateView, ProjectDeleteView, ProjectDetailView,
                     ProjectListView, ProjectUpdateView)
 
@@ -34,5 +35,7 @@ urlpatterns = [
          name="project_detail_json"),
     path('api/project/create/', ProjectCreateJson.as_view(),
          name="project_create_json"),
+    path('api/project/<int:pk>/update/', ProjectUpdateJson.as_view(),
+         name="project_update_json"),
 
 ]
