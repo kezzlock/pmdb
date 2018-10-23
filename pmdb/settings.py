@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     # django rest framework
     'rest_framework',
     'drfformbootstrap4',
+    # crispy forms
+     'crispy_forms',
     # other
 
 ]

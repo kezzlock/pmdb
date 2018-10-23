@@ -3,3 +3,4 @@ pycountry
 django-datatables-view
 djangorestframework
 drf-form-bootstrap-4
+django-crispy-forms
