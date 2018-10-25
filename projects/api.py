@@ -38,7 +38,8 @@ class ProjectListJson(BaseDatatableView):
                      'strength', 'brand_name', 'market.name', 'moq']
 
     def render_column(self, row, column):
-        """ Renders a column on a row.
+        """Render a column on a row.
+
         Column can be given in a module notation eg. document.invoice.type
         """
         # try to find rightmost object
@@ -71,7 +72,7 @@ class ProjectListJson(BaseDatatableView):
         # use parameters passed in GET request to filter queryset
         try:
             search = self.request.GET.get('search[value]', None).strip()
-        except:
+        except Exception:
             search = ""
         if search:
             # normalize query string and get the list of words
@@ -89,7 +90,7 @@ class ProjectListJson(BaseDatatableView):
                 try:
                     fmodel = self.model._meta.get_field(
                         '%s' % foreign_field.name).remote_field.model
-                except:
+                except Exception:
                     # for older version of django
                     fmodel = self.model._meta.get_field(
                         '%s' % foreign_field.name).rel.to
@@ -134,7 +135,7 @@ class ProjectCreateJson(generics.CreateAPIView):
     def perform_create(self, serializer):
         now = timezone.now()
         user = self.request.user
-        serializer.save(created_by=user, create_date=now, modify_by=user)
+        serializer.save(created_by=user, create_date=now)
 
 
 class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
