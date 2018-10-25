@@ -1,6 +1,27 @@
 {% load static %}
 
 <script>
+/* Create project script */
+$("input#submit-id-save_changes").click(function(event){
+  event.preventDefault();
+  alert("Posted");
+  $.ajax({
+    type: "POST",
+    url: "{% url 'project_create_json' %}",
+    csrfmiddlewaretoken: "{{ csrf_token }}",
+    data: $('.manipulate-form').serialize(),
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+      },
+    success: function(){
+        alert("Saved! It worked.");
+      },
+    error: function(XMLHttpRequest, textStatus, errorThrown) {
+      alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+      }
+    });
+  });
 
 /* Detail script */
 
