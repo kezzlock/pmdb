@@ -138,3 +138,5 @@ REST_FRAMEWORK = {
 
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
+# crispy
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
