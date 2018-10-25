@@ -83,6 +83,4 @@ class ProjectSerializer(serializers.ModelSerializer):
                   'status',
                   'prescription_category',
                   'therapeutic_area',
-                  'priority',
-                  'atc3_class',
-                  'otc_atc2_class')
+                  'priority')

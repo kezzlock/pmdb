@@ -1,11 +1,8 @@
-import json
-import re
-
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from projects.forms import ProjectCreateForm
+from projects.forms import ProjectCreateForm, ProjectCreateFormJson
 from projects.models import Project
 from projects.serializers import ProjectSerializer
 
@@ -40,6 +37,7 @@ class ProjectListView(ListView):
             sort=True, exclude=exclude_fields)
         # add serializer to context
         context['serializer'] = ProjectSerializer
+        context['form'] = ProjectCreateFormJson
         return context
 
 

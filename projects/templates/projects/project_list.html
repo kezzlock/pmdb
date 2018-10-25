@@ -1,6 +1,7 @@
 {% extends "pmdb/base.html" %}
 {% load static %}
 {% load rest_framework %}
+{% load crispy_forms_tags %}
 
 {% block extra_head_bottom %}
   {% include "projects/scripts.html" %}
@@ -258,9 +259,10 @@
         </div>
         <div class="menu-content">
 
-            <form method="post" action="{% url 'project_create_json' %}" class="manipulate-form">
-              {% csrf_token %}
-              {% render_form serializer template_pack='drfformbootstrap4/vertical' %}
+            {% comment %} <form method="post" action="{% url 'project_create_json' %}" class="manipulate-form"> {% endcomment %}
+              <!-- {% comment %} {% csrf_token %} {% endcomment %} -->
+              {% crispy form %}
+              {% comment %} {% render_form serializer template_pack='drfformbootstrap4/vertical' %} {% endcomment %}
                 {% comment %} <div class="form-group required">
                     <label for="manipulate-form__api-control" class="control-label">API</label>
                     <input type="text" class="form-control" id="manipulate-form__api-control">
@@ -341,12 +343,12 @@
                     <label for="manipulate-form__mah-control" class="control-label">MAH</label>
                     <input type="text" class="form-control" id="manipulate-form__mah-control">
                 </div> {% endcomment %}
-                <div class="row">
+                {% comment %} <div class="row">
                     <div class="col-6  offset-6">
                         <button type="submit" class="btn btn-block manipulate-form__submit-btn">Save</button>
                     </div>
-                </div>
-            </form>
+                </div> {% endcomment %}
+            {% comment %} </form> {% endcomment %}
         </div>
     </div>
 </div>
