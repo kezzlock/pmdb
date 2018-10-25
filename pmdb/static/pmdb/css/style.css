@@ -231,3 +231,4 @@ body { height: 100vh; display: -ms-flexbox; display: flex; -ms-flex-direction: c
 .manipulate-form__submit-btn { background-color: #4CC7AC; color: #fff; }
 
 .form-group.required .control-label:after { content: "*"; color: red; }
+.asteriskField {color: red;}
