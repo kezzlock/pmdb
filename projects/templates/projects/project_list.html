@@ -9,6 +9,11 @@
 
 {% block content %}
 <div class="sheet">
+ <!-- Messages -->
+  <div class="alert alert-success" style="display:none;position:fixed;top:50px;" id="msg__success">
+    <strong>Success!</strong> Project has been successfully added.
+  </div>
+  <!-- Dashboar -->
   <div class="sheet__dashboard">
       <div class="sheet__icons">
           <a class="sheet__show-manipulation-menu" href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
@@ -259,56 +264,9 @@
         </div>
         <div class="menu-content">
 
-            {% comment %} <form method="post" action="{% url 'project_create_json' %}" class="manipulate-form"> {% endcomment %}
-              <!-- {% comment %} {% csrf_token %} {% endcomment %} -->
+              <!-- Render crispy form -->
               {% crispy form %}
-              {% comment %} {% render_form serializer template_pack='drfformbootstrap4/vertical' %} {% endcomment %}
-                {% comment %} <div class="form-group required">
-                    <label for="manipulate-form__api-control" class="control-label">API</label>
-                    <input type="text" class="form-control" id="manipulate-form__api-control">
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__brand-name-control" class="control-label">Brand name</label>
-                    <input type="text" class="form-control" id="manipulate-form__brand-name-control">
-                </div>
-                <div class="form-group required">
-                    <label for="manipulate-form__type-control" class="control-label">Type</label>
-                    <select class="form-control custom-select" id="manipulate-form__type-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 2</option>
-                        <option value="type 3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__status-control" class="control-label">Status</label>
-                    <select class="form-control custom-select" id="manipulate-form__status-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 1</option>
-                        <option value="type 3">Option 1</option>
-                    </select>
-                </div>
-                <div class="form-group required">
-                    <label for="manipulate-form__pm-control" class="control-label">Project manager</label>
-                    <select class="form-control custom-select" id="manipulate-form__pm-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 2</option>
-                        <option value="type 3">Option 3</option>
-                    </select>
-                </div>
-                <div class="form-group required">
-                    <label for="manipulate-form__strength-control" class="control-label">Strength</label>
-                    <input type="text" class="form-control" id="manipulate-form__strength-control">
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__mah-control" class="control-label">MAH</label>
-                    <input type="text" class="form-control" id="manipulate-form__mah-control">
-                </div>
-                <div class="row">
-                    <div class="col-6  offset-6">
-                        <button type="submit" class="btn btn-block manipulate-form__submit-btn">Save</button>
-                    </div>
-                </div>
-            </form> {% endcomment %}
+
         </div>
     </div>
 </div>
