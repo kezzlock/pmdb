@@ -28,6 +28,7 @@ $(function () {
         width: '100%',
         theme: 'bootstrap4'
     });
+
 });
 /* Sidebar script */
 
