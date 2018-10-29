@@ -37,6 +37,11 @@ class ProjectListJson(BaseDatatableView):
     order_columns = ['', 'name', 'molecule.name', 'pharmaceutical_form',
                      'strength', 'brand_name', 'market.name', 'moq']
 
+    def get_initial_queryset(self):
+        # return all objects ordered reversed
+        return self.model.objects.all().order_by('-pk')
+
+
     def render_column(self, row, column):
         """Render a column on a row.
 
