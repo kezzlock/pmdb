@@ -41,7 +41,6 @@ class ProjectListJson(BaseDatatableView):
         # return all objects ordered reversed
         return self.model.objects.all().order_by('-pk')
 
-
     def render_column(self, row, column):
         """Render a column on a row.
 
@@ -138,19 +137,19 @@ class ProjectCreateJson(generics.CreateAPIView):
     serializer_class = ProjectSerializer
 
     def perform_create(self, serializer):
+        """Add default data when project is created."""
         now = timezone.now()
         user = self.request.user
         serializer.save(created_by=user, create_date=now)
 
 
-
-
 class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
-    """docstring for ProjectUpdateJson."""
+    """Update a Project Instance using JSON"""
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
     def perform_update(self, serializer):
+        """Add default data when project is updated."""
         now = timezone.now()
         user = self.request.user
         serializer.save(modify_by=user, modify_date=now)

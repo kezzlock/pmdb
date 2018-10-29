@@ -38,7 +38,6 @@ class ProjectListView(ListView):
         context['fields'] = Project.get_fields(
             sort=True, exclude=exclude_fields)
         # add serializer to context
-        context['serializer'] = ProjectSerializer
         form = ProjectCreateFormJson
         context['form'] = form
         return context
