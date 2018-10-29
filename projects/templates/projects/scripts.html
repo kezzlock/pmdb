@@ -1,49 +1,6 @@
 {% load static %}
 
 <script>
-// ajax project create for /create/ view
-$(function () {
-  $('#id_submit_ajax').click(function(event){
-      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
-      var data = $('#create_form').serializeArray();
-      event.stopPropagation();
-      event.preventDefault();
-      $.ajax({
-        type: "POST",
-        url: "/api/project/create/",
-        csrfmiddlewaretoken: csrftoken,
-        data: data,
-        success: function(){
-            alert("Saved! It worked.");
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-          alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
-        }
-      });
-  });
-});
-/* Create project script */
-function showmms(event) {
-  console.log('test0');
-  event.stopPropagation();
-  event.preventDefault();
-  $.ajax({
-    type: "POST",
-    url: "{% url 'project_create_json' %}",
-    csrfmiddlewaretoken: "{{ csrf_token }}",
-    data: $('.manipulate-form').serialize(),
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-      },
-    success: function(){
-        alert("Saved! It worked.");
-      },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
-      }
-    });
-  }
 
 /* Detail script */
 
