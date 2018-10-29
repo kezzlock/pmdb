@@ -138,6 +138,8 @@ class ProjectCreateJson(generics.CreateAPIView):
         serializer.save(created_by=user, create_date=now)
 
 
+
+
 class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
     """docstring for ProjectUpdateJson."""
     queryset = Project.objects.all()

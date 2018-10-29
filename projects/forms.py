@@ -15,8 +15,22 @@ class ProjectCreateForm(forms.ModelForm):
 
     class Meta:
         model = Project
-        fields = '__all__'
-        exclude = ['created_by', 'create_date', 'modified_by', 'modify_date']
+        # fields = '__all__'
+        # exclude = ['created_by', 'create_date', 'modified_by', 'modify_date']
+        fields = ('name', 'brand_name', 'molecule', 'description',
+                  'product_category',
+                  'strength',
+                  'market',
+                  'manager',
+                  'project_type',
+                  'pharmaceutical_form',
+                  'form',
+                  'status',
+                  'prescription_category',
+                  'therapeutic_area',
+                  'priority',
+                  'atc3_class',
+                  'otc_atc2_class')
 
 
 class ProjectCreateFormJson(forms.ModelForm):
@@ -29,10 +43,10 @@ class ProjectCreateFormJson(forms.ModelForm):
         super(ProjectCreateFormJson, self).__init__(*args, **kwargs)
         helper = FormHelper(self)
         helper.form_class = 'manipulate-form'
-        # helper.form_action = reverse_lazy('project_create_json')
+        helper.form_action = reverse_lazy('project_create_json')
         helper.layout.append(
             Submit('save_changes', 'Save changes',
-                   css_class="btn btn-block manipulate-form__submit-btn"))
+                   css_class="btn btn-block manipulate-form__submit-btn",  onclick="showmms();"))
         # helper.disable_csrf = True
         self.helper = helper
 
