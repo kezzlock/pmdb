@@ -3,7 +3,7 @@
 {% load rest_framework %}
 {% load crispy_forms_tags %}
 
-{% block extra_head_bottom %}
+{% block javascript %}
   {% include "projects/scripts.html" %}
 {% endblock %}
 
@@ -300,55 +300,15 @@
                     <input type="text" class="form-control" id="manipulate-form__strength-control">
                 </div>
                 <div class="form-group">
-                    <label for="manipulate-form__therapeutical-area-control" class="control-label">Therapeutical area</label>
-                    <select class="form-control custom-select" id="manipulate-form__therapeutical-area-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 1</option>
-                        <option value="type 3">Option 1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__category-control" class="control-label">Category</label>
-                    <select class="form-control custom-select" id="manipulate-form__category-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 1</option>
-                        <option value="type 3">Option 1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__pack-size-control" class="control-label">Pack size</label>
-                    <input type="text" class="form-control" id="manipulate-form__pack-size-control">
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__pack-type-control" class="control-label">Pack type</label>
-                    <select class="form-control custom-select" id="manipulate-form__pack-type-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 1</option>
-                        <option value="type 3">Option 1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__shell-life-control" class="control-label">Shell Life</label>
-                    <select class="form-control custom-select" id="manipulate-form__shell-life-control">
-                        <option value="type 1">Option 1</option>
-                        <option value="type 2">Option 1</option>
-                        <option value="type 3">Option 1</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="manipulate-form__moq-control" class="control-label">MOQ</label>
-                    <input type="text" class="form-control" id="manipulate-form__moq-control">
-                </div>
-                <div class="form-group">
                     <label for="manipulate-form__mah-control" class="control-label">MAH</label>
                     <input type="text" class="form-control" id="manipulate-form__mah-control">
-                </div> {% endcomment %}
-                {% comment %} <div class="row">
+                </div>
+                <div class="row">
                     <div class="col-6  offset-6">
                         <button type="submit" class="btn btn-block manipulate-form__submit-btn">Save</button>
                     </div>
-                </div> {% endcomment %}
-            {% comment %} </form> {% endcomment %}
+                </div>
+            </form> {% endcomment %}
         </div>
     </div>
 </div>

@@ -1,12 +1,20 @@
 {% extends "pmdb/base.html" %}
 
+{% block javascript %}
+  {% include "projects/scripts.html" %}
+{% endblock %}
+
+
 {% block content %}
-
+<div class="sheet" style="overflow-y:scroll;">
   <h1>Create new project</h1>
-
-  <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
-  </form>
-
+  <br /><br />
+  <div>
+    <form method="post" id="create_form">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <input type="submit" value="Save" id="id_submit_ajax" />
+    </form>
+  </div>
+</div>
 {% endblock %}
