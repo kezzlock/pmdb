@@ -30,12 +30,12 @@ def normalize_query(query_string,
 class ProjectListJson(BaseDatatableView):
     model = Project
     columns = ['id', 'name', 'molecule', 'pharmaceutical_form',
-               'strength', 'brand_name', 'market', 'moq']
+               'product_category', 'strength', 'market', 'moq']
     # 'description', 'project_type', 'manager', 'contract_type',
-    # 'status', 'prescription_category', 'therapeutic_area',
+    # 'status', 'therapeutic_area',
     # 'priority', 'atc_class', 'pack_size', 'pact_type', 'shelf_life',]
     order_columns = ['', 'name', 'molecule.name', 'pharmaceutical_form',
-                     'strength', 'brand_name', 'market.name', 'moq']
+                     'product_category.type', 'strength', 'market.name', 'moq']
 
     def get_initial_queryset(self):
         # return all objects ordered reversed

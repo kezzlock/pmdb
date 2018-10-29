@@ -30,8 +30,6 @@ class ProjectDetailSerializer(serializers.ModelSerializer):
     project_type = serializers.CharField(source='get_project_type_display')
     contract_type = serializers.CharField(source='get_contract_type_display')
     status = serializers.CharField(source='get_status_display')
-    prescription_category = serializers.CharField(
-        source='get_prescription_category_display')
     priority = serializers.CharField(source='get_priority_display')
     shelf_life = serializers.CharField(source='get_shelf_life_display')
     risk_type = serializers.CharField(source='get_risk_type_display')
@@ -81,6 +79,5 @@ class ProjectSerializer(serializers.ModelSerializer):
                   'pharmaceutical_form',
                   'form',
                   'status',
-                  'prescription_category',
                   'therapeutic_area',
                   'priority')

@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Agreement(models.Model):
-    """Django data model Agreement"""
+    """Django data model Agreement."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 
@@ -16,7 +16,7 @@ class Agreement(models.Model):
 
 
 class AtcClass(models.Model):
-    """Django data model AtcClass"""
+    """Django data model AtcClass."""
 
     code = models.CharField(max_length=6, null=False, blank=False)
     type = models.CharField(max_length=300, null=False, blank=False)
@@ -30,7 +30,7 @@ class AtcClass(models.Model):
 
 
 class DeliveryTerm(models.Model):
-    """Django data model DeliveryTerms"""
+    """Django data model DeliveryTerms."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 
@@ -43,7 +43,7 @@ class DeliveryTerm(models.Model):
 
 
 class FormNFC12(models.Model):
-    """Django data model Form NFC12"""
+    """Django data model Form NFC12."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 
@@ -56,7 +56,7 @@ class FormNFC12(models.Model):
 
 
 class Licensor(models.Model):
-    """Django data model Licensors"""
+    """Django data model Licensors."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 
@@ -69,7 +69,7 @@ class Licensor(models.Model):
 
 
 class Market(models.Model):
-    """Django data model Market"""
+    """Django data model Market."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 
@@ -105,7 +105,7 @@ class Molecule(models.Model):
 
 
 class OtcAtc2Class(models.Model):
-    """Django data model OtcAtc2Class"""
+    """Django data model OtcAtc2Class."""
 
     code = models.CharField(max_length=6, null=False, blank=False)
     type = models.CharField(max_length=300, null=False, blank=False)
@@ -119,7 +119,7 @@ class OtcAtc2Class(models.Model):
 
 
 class PackType(models.Model):
-    """Django data model PackType"""
+    """Django data model PackType."""
 
     type = models.CharField(max_length=300, null=False, blank=False)
 
@@ -145,7 +145,7 @@ class PharmaForm(models.Model):
 
 
 class ProductCategory(models.Model):
-    """Django data model ProductCategory"""
+    """Django data model ProductCategory."""
 
     type = models.CharField(max_length=300, null=False, blank=False)
 
@@ -154,11 +154,11 @@ class ProductCategory(models.Model):
         verbose_name_plural = 'Product Categorys'
 
     def __str__(self):
-        return str(self.id)
+        return str(self.type)
 
 
 class RegistrationStrategy(models.Model):
-    """Django data model RegistrationStrategy"""
+    """Django data model RegistrationStrategy."""
 
     name = models.CharField(max_length=300, null=False, blank=False)
 

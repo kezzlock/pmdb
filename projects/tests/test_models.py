@@ -78,8 +78,6 @@ class RobjectModelTestCase(TestCase):
         self.help_check_field_type("contract_type", models.IntegerField)
         self.help_check_field_type("manager", models.ForeignKey)
         self.help_check_field_type("status", models.IntegerField)
-        self.help_check_field_type(
-            "prescription_category", models.IntegerField)
         self.help_check_field_type("pack_size", models.CharField)
         self.help_check_field_type("shelf_life", models.IntegerField)
 
@@ -107,7 +105,6 @@ class RobjectModelTestCase(TestCase):
         self.help_check_field_is_required("strength")
         self.help_check_field_is_required("project_type")
         self.help_check_field_is_required("manager")
-        self.help_check_field_is_required("prescription_category")
 
     def test_str_method(self):
         proj1 = self.help_create_object()

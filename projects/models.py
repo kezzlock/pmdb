@@ -23,14 +23,6 @@ class Project(models.Model):
         (LATT, 'LA+TT'),
         (DA, 'DA'),
     )
-    # prescription category
-    OTC, RX, MD, DS = (0, 1, 2, 3)
-    PRESCRIPTION_CHOICES = (
-        (OTC, 'OTC'),
-        (RX, 'Rx'),
-        (MD, 'MD'),
-        (DS, 'DS'),
-    )
     # priority choices
     TBC = 0
     LOW = 1
@@ -87,8 +79,8 @@ class Project(models.Model):
         PharmaForm, on_delete=models.CASCADE)  # required
     form = models.ForeignKey(
         FormNFC12, blank=True, null=True, on_delete=models.CASCADE)  # NFC12
-    product_category = models.ForeignKey(
-        ProductCategory, blank=True, null=True, on_delete=models.CASCADE)
+    product_category = models.ForeignKey( # required
+        ProductCategory, blank=False, null=False, on_delete=models.CASCADE)
     strength = models.CharField(
         max_length=200, null=False, blank=False)  # required
     brand_name = models.CharField(max_length=200, blank=True)
@@ -103,9 +95,6 @@ class Project(models.Model):
     contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
     status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT,
                                  null=True, blank=True)
-    prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
-                                                default=RX, null=False,
-                                                blank=False)  # required
     therapeutic_area = models.ForeignKey(TherapeuticArea, blank=True, null=True,
                                          on_delete=models.CASCADE)
     priority = models.IntegerField(choices=PRIORITY_CHOICES, default=TBC,
