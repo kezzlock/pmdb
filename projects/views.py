@@ -51,7 +51,7 @@ class ProjectDetailView(DetailView):
 
 class ProjectCreateView(CreateView):
     model = Project
-    form_class = ProjectCreateForm
+    form_class = ProjectCreateFormJson
     template_name = 'projects/project_create.html'
     success_url = reverse_lazy('project-list')
 
