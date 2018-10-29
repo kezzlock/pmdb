@@ -1,5 +1,3 @@
-from os import path
-
 from django.contrib.auth.models import User
 from django.db import models
 from django.urls import reverse
@@ -9,7 +7,7 @@ from dropdowns.models import (Agreement, AtcClass, DeliveryTerm, FormNFC12,
                               PackType, PharmaForm, ProductCategory,
                               RegistrationStrategy, TherapeuticArea)
 
-### main object model ###
+# ### main object model ###
 
 
 class Project(models.Model):
@@ -17,6 +15,7 @@ class Project(models.Model):
 
     Main aplication object.
     """
+
     # contract type
     LSA, LATT, DA = (0, 1, 2)
     CTYPE_CHOICES = (
@@ -59,8 +58,9 @@ class Project(models.Model):
         (HIGH, 'High'),
     )
     # status choices
-    TERMINATED, PREPMB, PIPELINE, PORTFOLIO = (0, 1, 2, 3)
+    DRAFT, PREPMB, PIPELINE, PORTFOLIO, TERMINATED = (0, 1, 2, 3, 4)
     STATUS_CHOICES = (
+        (DRAFT, 'draft'),
         (PREPMB, 'pre-PMB'),
         (PIPELINE, 'pipeline'),
         (PORTFOLIO, 'portfolio'),
@@ -101,7 +101,7 @@ class Project(models.Model):
                                 on_delete=models.CASCADE,
                                 related_name="manager")
     contract_type = models.IntegerField(choices=CTYPE_CHOICES, default=LSA)
-    status = models.IntegerField(choices=STATUS_CHOICES, default=PIPELINE,
+    status = models.IntegerField(choices=STATUS_CHOICES, default=DRAFT,
                                  null=True, blank=True)
     prescription_category = models.IntegerField(choices=PRESCRIPTION_CHOICES,
                                                 default=RX, null=False,
@@ -208,13 +208,16 @@ class Project(models.Model):
     additional_costs = models.TextField(blank=True)
 
     def __str__(self):
+        """Return model string representation."""
         return self.name
 
     def get_absolute_url(self):
+        """Return abolute url for model."""
         return reverse('project-detail', args=[str(self.id)])
 
     def get_fields_dict(self, exclude_fields=None, sorted=False):
-        """
+        """Return dictionary containing model fields.
+
         Return dictionary with object fields:
             {field.verbose_name: field value, ...}
 
@@ -242,7 +245,8 @@ class Project(models.Model):
 
     @classmethod
     def get_fields(cls, exclude=None, sort=False):
-        """
+        """Return fields dictionary.
+
         Return dictionary with fields names:
             {field.name:field.verbose_name, ...}
 
@@ -259,7 +263,7 @@ class Project(models.Model):
 
     @classmethod
     def get_integer_choices_fields(cls):
-        # "---------"
+        """Return model integer fields."""
         fields = set(f for f in cls._meta.get_fields() if (
             f.get_internal_type() == 'IntegerField'))
         return fields

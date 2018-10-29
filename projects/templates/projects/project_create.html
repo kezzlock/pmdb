@@ -1,12 +1,18 @@
 {% extends "pmdb/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block javascript %}
+  {% include "projects/scripts.html" %}
+{% endblock %}
+
 
 {% block content %}
-
+<div class="detail" style="overflow-y:scroll;">
+  <div class="alert alert-success" style="display:none;position:fixed;top:50px;" id="msg__success">
+    <strong>Success!</strong> Project has been successfully added.
+  </div>
   <h1>Create new project</h1>
-
-  <form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" value="Save" />
-  </form>
-
+  <br /><br />
+      {% crispy form %}
+</div>
 {% endblock %}

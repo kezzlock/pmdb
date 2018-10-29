@@ -1,3 +1,36 @@
+/* Create for ajax */
+
+// ajax project create for /create/ view
+$(function () {
+
+  $('#create_form').submit(function(event){
+      var create_form = '#create_form';
+      var csrftoken = jQuery("[name=csrfmiddlewaretoken]").val();
+      var form_data = $(create_form).serializeArray();
+      event.stopPropagation();
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: "/api/project/create/",
+        csrfmiddlewaretoken: csrftoken,
+        data: form_data,
+        success: function(data){
+          $('.menu').hide(0, function () {
+              $('.menu__content').hide();
+          });
+          $("#msg__success").show();
+          setTimeout(function() { $("#msg__success").hide(); }, 5000);
+          setTimeout(function() { location.reload(); }, 5000);
+
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+          console.log(XMLHttpRequest);
+          alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }
+      });
+  });
+});
+
 /* Side menu script*/
 
 $(function () {
@@ -15,6 +48,20 @@ $(function () {
             $('.columns-control').show();
         });
     });
+
+    $('.sheet__show-manipulation-menu').click(function () {
+        $('.menu__content').hide();
+        // child will show after parent
+        $('.menu').show(0, function () {
+            $('.manipulate-menu').show();
+        });
+    });
+
+    $('.select').select2({
+        width: '100%',
+        theme: 'bootstrap4'
+    });
+
 });
 /* Sidebar script */
 

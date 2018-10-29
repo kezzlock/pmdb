@@ -9,12 +9,12 @@
 
     <!-- extra HEAD top -->
     {% block extra_head_top %} {% endblock %}
-    <!-- Bootstrap CSS -->
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet"
-          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap-reboot.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'pmdb/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'pmdb/css/select2-bootstrap4.css' %}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -26,12 +26,12 @@
             crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8"
             src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-    <script src="{% static 'pmdb/js/script.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+
 
     <!-- extra HEAD bottom -->
     {% block extra_head_bottom %} {% endblock %}
-
-    <!--<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">-->
+    <script src="{% static 'pmdb/js/script.js' %}"></script>
 
     <title>PMDB</title>
 </head>
@@ -188,5 +188,6 @@
 
     </div>
 </div>
+{% block javascript %} {% endblock %}
 </body>
 </html>

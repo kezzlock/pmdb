@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'django_datatables_view',
     # django rest framework
     'rest_framework',
+    'drfformbootstrap4',
+    # crispy forms
+     'crispy_forms',
     # other
 
 ]
@@ -131,7 +134,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# REST FRAMEWORK
 REST_FRAMEWORK = {
-
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+        'rest_framework.parsers.FormParser',
+    ),
     'DATETIME_FORMAT': "%m/%d/%Y %H:%M:%S",
 }
+# crispy
+CRISPY_TEMPLATE_PACK = 'bootstrap4'

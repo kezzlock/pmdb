@@ -1,12 +1,13 @@
 import re
 
 from django.db.models import CharField, ForeignKey, Q, TextField
+from django.utils import timezone
 from django.utils.html import escape
 from django_datatables_view.base_datatable_view import BaseDatatableView
 from rest_framework import generics
 
 from projects.models import Project
-from projects.serializers import ProjectSerializer
+from projects.serializers import ProjectDetailSerializer, ProjectSerializer
 
 
 def normalize_query(query_string,
@@ -34,10 +35,15 @@ class ProjectListJson(BaseDatatableView):
     # 'status', 'prescription_category', 'therapeutic_area',
     # 'priority', 'atc_class', 'pack_size', 'pact_type', 'shelf_life',]
     order_columns = ['', 'name', 'molecule.name', 'pharmaceutical_form',
-               'strength', 'brand_name', 'market.name', 'moq']
+                     'strength', 'brand_name', 'market.name', 'moq']
+
+    def get_initial_queryset(self):
+        # return all objects ordered reversed
+        return self.model.objects.all().order_by('-pk')
 
     def render_column(self, row, column):
-        """ Renders a column on a row.
+        """Render a column on a row.
+
         Column can be given in a module notation eg. document.invoice.type
         """
         # try to find rightmost object
@@ -70,7 +76,7 @@ class ProjectListJson(BaseDatatableView):
         # use parameters passed in GET request to filter queryset
         try:
             search = self.request.GET.get('search[value]', None).strip()
-        except:
+        except Exception:
             search = ""
         if search:
             # normalize query string and get the list of words
@@ -88,7 +94,7 @@ class ProjectListJson(BaseDatatableView):
                 try:
                     fmodel = self.model._meta.get_field(
                         '%s' % foreign_field.name).remote_field.model
-                except:
+                except Exception:
                     # for older version of django
                     fmodel = self.model._meta.get_field(
                         '%s' % foreign_field.name).rel.to
@@ -115,9 +121,35 @@ class ProjectListJson(BaseDatatableView):
         return qs
 
 
-class ProjectDetailJson(generics.RetrieveUpdateDestroyAPIView):
+class ProjectDetailJson(generics.RetrieveAPIView):
     """
-    Retrieve, update or delete a project instance.
+    Retrieve a project instance.
+    """
+    queryset = Project.objects.all()
+    serializer_class = ProjectDetailSerializer
+
+
+class ProjectCreateJson(generics.CreateAPIView):
+    """
+    Create a project instance.
     """
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
+
+    def perform_create(self, serializer):
+        """Add default data when project is created."""
+        now = timezone.now()
+        user = self.request.user
+        serializer.save(created_by=user, create_date=now)
+
+
+class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
+    """Update a Project Instance using JSON"""
+    queryset = Project.objects.all()
+    serializer_class = ProjectSerializer
+
+    def perform_update(self, serializer):
+        """Add default data when project is updated."""
+        now = timezone.now()
+        user = self.request.user
+        serializer.save(modify_by=user, modify_date=now)

@@ -1,12 +1,12 @@
-import json
-import re
-
+from crispy_forms.utils import render_crispy_form
+from django.template.context_processors import csrf
 from django.urls import reverse_lazy
 from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
                                   UpdateView)
 
-from projects.forms import ProjectCreateForm
+from projects.forms import ProjectCreateForm, ProjectCreateFormJson
 from projects.models import Project
+from projects.serializers import ProjectSerializer
 
 
 class ProjectListView(ListView):
@@ -33,9 +33,13 @@ class ProjectListView(ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        # add model fields to context
         exclude_fields = ["modified_by", "modify_date", "id", "name"]
         context['fields'] = Project.get_fields(
             sort=True, exclude=exclude_fields)
+        # add serializer to context
+        form = ProjectCreateFormJson
+        context['form'] = form
         return context
 
 
@@ -46,7 +50,7 @@ class ProjectDetailView(DetailView):
 
 class ProjectCreateView(CreateView):
     model = Project
-    form_class = ProjectCreateForm
+    form_class = ProjectCreateFormJson
     template_name = 'projects/project_create.html'
     success_url = reverse_lazy('project-list')
 

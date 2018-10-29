@@ -21,7 +21,7 @@ def get_user_full_name(user):
     return name
 
 
-class ProjectSerializer(serializers.ModelSerializer):
+class ProjectDetailSerializer(serializers.ModelSerializer):
     # TODO: create autointerator for integer choice fields
     # DateTimeField
     create_date = serializers.DateTimeField()
@@ -37,7 +37,8 @@ class ProjectSerializer(serializers.ModelSerializer):
     risk_type = serializers.CharField(source='get_risk_type_display')
     # ForeignKey fields TODO: Create autointerator
     created_by = serializers.SerializerMethodField('get_creted_by_full_name')
-    modified_by = serializers.SerializerMethodField('get_modified_by_full_name')
+    modified_by = serializers.SerializerMethodField(
+        'get_modified_by_full_name')
     molecule = serializers.StringRelatedField()
     pharmaceutical_form = serializers.StringRelatedField()
     market = serializers.StringRelatedField()
@@ -65,3 +66,21 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = '__all__'
+
+
+class ProjectSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Project
+        fields = ('name', 'brand_name', 'molecule', 'description',
+                  'product_category',
+                  'strength',
+                  'market',
+                  'manager',
+                  'project_type',
+                  'pharmaceutical_form',
+                  'form',
+                  'status',
+                  'prescription_category',
+                  'therapeutic_area',
+                  'priority')

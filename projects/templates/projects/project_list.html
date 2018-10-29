@@ -1,15 +1,22 @@
 {% extends "pmdb/base.html" %}
 {% load static %}
+{% load rest_framework %}
+{% load crispy_forms_tags %}
 
-{% block extra_head_bottom %}
+{% block javascript %}
   {% include "projects/scripts.html" %}
 {% endblock %}
 
 {% block content %}
 <div class="sheet">
+ <!-- Messages -->
+  <div class="alert alert-success" style="display:none;position:fixed;top:50px;" id="msg__success">
+    <strong>Success!</strong> Project has been successfully added.
+  </div>
+  <!-- Dashboar -->
   <div class="sheet__dashboard">
       <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
+          <a class="sheet__show-manipulation-menu" href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
           <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/upload.svg' %}" alt="upload"></a>
       </div>
       <div class="sheet__space-filler"></div>
@@ -33,7 +40,7 @@
       </div>
   </div>
   <div class="sheet__table-container">
-      <table class="table">
+      <table class="_table">
           <thead class="table__thead">
             <th>ID</th>
             <th>Project Name</th>
@@ -52,7 +59,7 @@
 <div class="menu">
     <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit">
     <div class="details menu__content">
-        <div class="menu__header-container">
+        <div class="menu-header">
             <div class="details__project-name-container">
                 <span>Project details: </span><a href="#" class="details__project-name" id="details__name">Baclofen</a>
             </div>
@@ -149,9 +156,9 @@
         </div>
     </div>
     <div class="columns-control menu__content">
-        <div class="menu__header-container">
-            <img src="{% static 'pmdb/img/columns.svg' %}" alt="columns" class="columns-control__header-icon">
-            <span class="columns-control__header">Columns</span>
+        <div class="menu-header">
+            <img src="{% static 'pmdb/img/columns.svg' %}" alt="columns" class="menu-header__header-icon">
+            <span class="menu-header__header">Columns</span>
         </div>
         <button class="columns-control__add-column-button">
             <img src="{% static 'pmdb/img/plus-white.svg' %}" alt="add-column" class="columns-control__add-icon">
@@ -248,6 +255,18 @@
                     <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="manipulate-menu menu__content">
+        <div class="menu-header">
+            <img src="{% static 'pmdb/img/plus-round.svg' %}" alt="columns" class="menu-header__header-icon">
+            <span class="menu-header__header">Create new project</span>
+        </div>
+        <div class="menu-content">
+
+              <!-- Render crispy form -->
+              {% crispy form %}
+
         </div>
     </div>
 </div>
