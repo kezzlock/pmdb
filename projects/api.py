@@ -29,17 +29,23 @@ def normalize_query(query_string,
 
 class ProjectListJson(BaseDatatableView):
     model = Project
-    columns = ['id', 'name', 'molecule', 'pharmaceutical_form',
+    columns = ['id', 'name', 'molecule', 'manager', 'pharmaceutical_form',
                'product_category', 'strength', 'market', 'moq']
     # 'description', 'project_type', 'manager', 'contract_type',
     # 'status', 'therapeutic_area',
     # 'priority', 'atc_class', 'pack_size', 'pact_type', 'shelf_life',]
-    order_columns = ['', 'name', 'molecule.name', 'pharmaceutical_form',
-                     'product_category.type', 'strength', 'market.name', 'moq']
+    order_columns = ['', 'name', 'molecule.name', 'manager.username',
+                     'pharmaceutical_form', 'product_category.type',
+                     'strength', 'market.name', 'moq']
 
     def get_initial_queryset(self):
         # return all objects ordered reversed
         return self.model.objects.all().order_by('-pk')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['columns'] = self.get_columns()
+        return context
 
     def render_column(self, row, column):
         """Render a column on a row.

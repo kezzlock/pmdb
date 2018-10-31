@@ -40,6 +40,9 @@ class ProjectListView(ListView):
         # add serializer to context
         form = ProjectCreateFormJson
         context['form'] = form
+        columns = ['id', 'name', 'molecule', 'manager', 'pharmaceutical_form',
+                   'product_category', 'strength', 'market', 'moq']
+        context['columns'] = columns[1:]
         return context
 
 

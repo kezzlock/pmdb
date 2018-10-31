@@ -2,6 +2,7 @@
 {% load static %}
 {% load rest_framework %}
 {% load crispy_forms_tags %}
+{% load verbose_tags %}
 
 {% block javascript %}
   {% include "projects/scripts.html" %}
@@ -44,14 +45,13 @@
   <div class="sheet__table-container">
       <table class="_table">
           <thead class="table__thead">
+
             <th>ID</th>
-            <th>Project Name</th>
-            <th>Molecule</th>
-            <th>Pharmaceutical Form</th>
-            <th>Product Category</th>
-            <th>Strength</th>
-            <th>Market</th>
-            <th>Moq</th>
+            {% for column in columns %}
+            <th>{{ column |safe |title|remove_underscore }}</th>
+            {% endfor %}
+
+
 
           </thead>
           <tbody></tbody>
@@ -166,25 +166,19 @@
             <img src="{% static 'pmdb/img/plus-white.svg' %}" alt="add-column" class="columns-control__add-icon" />
             <span class="columns-control__button-text">Create new column</span>
         </button>
+
+
         <div class="columns-control__rows">
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Name</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-show-column.svg' %}" data-column="1" alt="show column" class="columns-control__row-icon columns-control__show-column-icon" />
-                    <img src="{% static 'pmdb/img/eye-hide-column.svg' %}" data-column="1" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon" />
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" data-column="1" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon" />
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" data-column="1" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon" />
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Type</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-show-column.svg' %}" data-column="type" alt="show column" class="columns-control__row-icon columns-control__show-column-icon" />
-                    <img src="{% static 'pmdb/img/eye-hide-column.svg' %}" data-column="type" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon" />
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" data-column="type" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon" />
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" data-column="type" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon" />
-                </div>
-            </div>
+          {% for column in columns %}
+          <div class="columns-control__row">
+              <span class="columns-control__column-name">{{ column |safe |title |remove_underscore }}</span>
+              <div class="columns-control__icons-container">
+                  <img src="{% static 'pmdb/img/eye-show-column.svg' %}" data-column="{{ forloop.counter }}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon" />
+                  <img src="{% static 'pmdb/img/eye-hide-column.svg' %}" data-column="{{ forloop.counter }}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon" />
+              </div>
+          </div>
+          {% endfor %}
+
         </div>
     </div>
     <div class="menu-manipulate menu-container">
@@ -196,6 +190,7 @@
 
               <!-- Render crispy form -->
               {% crispy form %}
+              <!-- end crispy form -->
 
         </div>
     </div>
