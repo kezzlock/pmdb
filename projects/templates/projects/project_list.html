@@ -5,6 +5,8 @@
 
 {% block javascript %}
   {% include "projects/scripts.html" %}
+  <script src="{% static 'pmdb/js/side-menus.js' %}" defer></script>
+  <script src="{% static 'pmdb/js/menu-show-hide-columns.js' %}" defer></script>
 {% endblock %}
 
 {% block content %}
@@ -16,27 +18,27 @@
   <!-- Dashboar -->
   <div class="sheet__dashboard">
       <div class="sheet__icons">
-          <a class="sheet__show-manipulation-menu" href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/upload.svg' %}" alt="upload"></a>
+          <a class="sheet__show-manipulation-menu" href="#"><img class="sheet__icon" src="{% static 'pmdb/img/plus.svg' %}" alt="add" /></a>
+          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/upload.svg' %}" alt="upload" /></a>
       </div>
       <div class="sheet__space-filler"></div>
       <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/edit.svg' %}" alt="edit"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
-                           alt="download"></a>
+          <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon" src="{% static 'pmdb/img/edit.svg' %}" alt="edit" /></a>
+          <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove" /></a>
+          <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
+                           alt="download" /></a>
       </div>
       <div class="sheet__space-filler"></div>
       <div class="sheet__search-container">
-          <a href="#"><img src="{% static 'pmdb/img/search.svg' %}" alt="search" class="sheet__icon sheet__search-icon"></a>
+          <a href="#"><img src="{% static 'pmdb/img/search.svg' %}" alt="search" class="sheet__icon sheet__search-icon" /></a>
           <input type="text" class="sheet__search">
       </div>
       <div class="sheet__space-filler"></div>
       <div class="sheet__icons">
-          <a href="#"><img class="sheet__icon" src="{% static 'pmdb/img/filter.svg' %}" alt="tags"></a>
-          <a href="#"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/menu.svg' %}" alt="menu"></a>
+          <a href="#"><img class="sheet__icon sheet__show-filter-menu" src="{% static 'pmdb/img/filter.svg' %}" alt="tags" /></a>
+          <a href="#"><img class="sheet__icon sheet__icon--margin-left sheet__show-choices-menu"  src="{% static 'pmdb/img/choices-menu-icon.svg' %}" alt="menu" /></a>
           <a href="#" class="sheet__show-column-control-menu">
-            <img class="sheet__icon sheet__icon--margin-left " src="{% static 'pmdb/img/columns.svg' %}" alt="table"></a>
+            <img class="sheet__icon sheet__icon--margin-left " src="{% static 'pmdb/img/columns.svg' %}" alt="table" /></a>
       </div>
   </div>
   <div class="sheet__table-container">
@@ -57,8 +59,8 @@
   </div>
 </div>
 <div class="menu">
-    <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit">
-    <div class="details menu__content">
+    <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit" />
+    <div class="details menu-container" style="display:none">
         <div class="menu-header">
             <div class="details__project-name-container">
                 <span>Project details: </span><a href="#" class="details__project-name" id="details__name">Baclofen</a>
@@ -87,10 +89,10 @@
             </div>
             <div class="details__file-container">
                 <button class="details__more-btn">
-                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon" />
                 </button>
                 <div class="details__file-icon-container">
-                    <img src="{% static 'pmdb/img/pdf.svg' %}" alt="pdf" class="details__file-icon">
+                    <img src="{% static 'pmdb/img/pdf.svg' %}" alt="pdf" class="details__file-icon" />
                 </div>
                 <div class="details__file-info-container">
                     <div class="details__file-header">
@@ -109,10 +111,10 @@
             </div>
             <div class="details__file-container">
                 <button class="details__more-btn">
-                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon" />
                 </button>
                 <div class="details__file-icon-container">
-                    <img src="{% static 'pmdb/img/doc.svg' %}" alt="pdf" class="details__file-icon">
+                    <img src="{% static 'pmdb/img/doc.svg' %}" alt="pdf" class="details__file-icon" />
                 </div>
                 <div class="details__file-info-container">
                     <div class="details__file-header">
@@ -131,10 +133,10 @@
             </div>
             <div class="details__file-container">
                 <button class="details__more-btn">
-                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon">
+                    <img src="{% static 'pmdb/img/more.svg' %}" alt="more" class="details__more-icon" />
                 </button>
                 <div class="details__file-icon-container">
-                    <img src="{% static 'pmdb/img/txt.svg' %}" alt="pdf" class="details__file-icon">
+                    <img src="{% static 'pmdb/img/txt.svg' %}" alt="pdf" class="details__file-icon" />
                 </div>
                 <div class="details__file-info-container">
                     <div class="details__file-header">
@@ -155,111 +157,39 @@
             </div>
         </div>
     </div>
-    <div class="columns-control menu__content">
+    <div class="columns-control menu-container">
         <div class="menu-header">
-            <img src="{% static 'pmdb/img/columns.svg' %}" alt="columns" class="menu-header__header-icon">
+            <img src="{% static 'pmdb/img/columns.svg' %}" alt="columns" class="menu-header__header-icon" />
             <span class="menu-header__header">Columns</span>
         </div>
         <button class="columns-control__add-column-button">
-            <img src="{% static 'pmdb/img/plus-white.svg' %}" alt="add-column" class="columns-control__add-icon">
+            <img src="{% static 'pmdb/img/plus-white.svg' %}" alt="add-column" class="columns-control__add-icon" />
             <span class="columns-control__button-text">Create new column</span>
         </button>
         <div class="columns-control__rows">
             <div class="columns-control__row">
-                <span class="columns-control__column-name">API</span>
+                <span class="columns-control__column-name">Name</span>
                 <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
+                    <img src="{% static 'pmdb/img/eye-show-column.svg' %}" data-column="1" alt="show column" class="columns-control__row-icon columns-control__show-column-icon" />
+                    <img src="{% static 'pmdb/img/eye-hide-column.svg' %}" data-column="1" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon" />
+                    <img src="{% static 'pmdb/img/edit-column.svg' %}" data-column="1" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon" />
+                    <img src="{% static 'pmdb/img/remove-column.svg' %}" data-column="1" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon" />
                 </div>
             </div>
             <div class="columns-control__row">
                 <span class="columns-control__column-name">Type</span>
                 <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Status</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Added on</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Added by</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">PM</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Category</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Strength</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Brand name</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
-                </div>
-            </div>
-            <div class="columns-control__row">
-                <span class="columns-control__column-name">Market</span>
-                <div class="columns-control__icons-container">
-                    <img src="{% static 'pmdb/img/eye-open-column.svg' %}" alt="show column" class="columns-control__row-icon columns-control__show-column-icon">
-                    <img src="{% static 'pmdb/img/eye-closed-column.svg' %}" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon">
-                    <img src="{% static 'pmdb/img/edit-column.svg' %}" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon">
-                    <img src="{% static 'pmdb/img/remove-column.svg' %}" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon">
+                    <img src="{% static 'pmdb/img/eye-show-column.svg' %}" data-column="type" alt="show column" class="columns-control__row-icon columns-control__show-column-icon" />
+                    <img src="{% static 'pmdb/img/eye-hide-column.svg' %}" data-column="type" alt="hide column" class="columns-control__row-icon columns-control__hide-column-icon" />
+                    <img src="{% static 'pmdb/img/edit-column.svg' %}" data-column="type" alt="edit column" class="columns-control__row-icon columns-control__row-icon--horizontal-margins columns-control__edit-column-icon" />
+                    <img src="{% static 'pmdb/img/remove-column.svg' %}" data-column="type" alt="remove column" class="columns-control__row-icon columns-control__remove-column-icon" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="manipulate-menu menu__content">
+    <div class="menu-manipulate menu-container">
         <div class="menu-header">
-            <img src="{% static 'pmdb/img/plus-round.svg' %}" alt="columns" class="menu-header__header-icon">
+            <img src="{% static 'pmdb/img/plus-round.svg' %}" alt="columns" class="menu-header__header-icon" />
             <span class="menu-header__header">Create new project</span>
         </div>
         <div class="menu-content">
@@ -267,6 +197,149 @@
               <!-- Render crispy form -->
               {% crispy form %}
 
+        </div>
+    </div>
+    <div class="menu-filter menu-container">
+        <div class="menu-header">
+            <img src="{% static 'pmdb/img/filter.svg' %}" alt="columns" class="menu-header__header-icon" />
+            <span class="menu-header__header">Filter</span>
+            <div class="menu-content__clear-container float-right">
+                <img class="menu-header__header-icon menu-header__clear-icon" src="{% static 'pmdb/img/close-cross.svg' %}" alt="clear filters" />
+                <span class="menu-header__header--orange">Clear</span>
+            </div>
+        </div>
+        <div class="menu-content">
+            <form action="#" class="menu-form filter-form">
+                <div class="form-group">
+                    <label class="control-label">API</label>
+                    <input name="api" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Brand name</label>
+                    <input name="brand-name"  type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Added by</label>
+                    <div class="row">
+                        <div class="col form-group">
+                            <input placeholder="From" class="form-control date-control" type="text">
+                        </div>
+                        <div class="col form-group">
+                            <input placeholder="To" class="form-control date-control" type="text">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Type</label>
+                    <select name="type"  class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 2</option>
+                        <option value="type 3">Option 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Status</label>
+                    <select name="status" class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 1</option>
+                        <option value="type 3">Option 1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Project manager</label>
+                    <select name="project-manager" class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 2</option>
+                        <option value="type 3">Option 3</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Strength</label>
+                    <input name="strength" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Therapeutical area</label>
+                    <select name="therapeutical-area" class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 1</option>
+                        <option value="type 3">Option 1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Category</label>
+                    <select name="category"  class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 1</option>
+                        <option value="type 3">Option 1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Pack size</label>
+                    <input name="pack-size" type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Pack type</label>
+                    <select name="pack-type" class="form-control custom-select" multiple="multiple">
+                        <option value="type 1">Option 1</option>
+                        <option value="type 2">Option 1</option>
+                        <option value="type 3">Option 1</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Shell life</label>
+                    <div class="row">
+                        <div class="form-group col">
+                            <input name="shell-life-from" type="number" class="form-control" placeholder="From" min="0">
+                        </div>
+                        <div class="form-group col">
+                            <input name="shell-life-to"  type="number" class="form-control" placeholder="To" min="0">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">MOQ</label>
+                    <input name="moq"  type="text" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label class="control-label">MAH</label>
+                    <input name="mah" type="text" class="form-control">
+                </div>
+                <div class="row">
+                    <div class="col-6  offset-6">
+                        <button type="submit" class="btn btn-block menu-form__submit-btn">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="menu-choices menu-container">
+        <div class="menu-header">
+            <img src="{% static 'pmdb/img/choices-menu-icon.svg' %}" alt="columns" class="menu-header__header-icon" />
+            <span class="menu-header__header">Choices groups</span>
+        </div>
+        <div class="menu-content">
+            <div class="container-fluid">
+                <div class="row mb-3">
+                    <div class="col d-flex align-items-center">
+                        <img src="{% static 'pmdb/img/circle-blue-icon.svg' %}" alt="choices icon" class="icon-lg" />
+                        <span class="ml-2">Project Managers</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <img src="{% static 'pmdb/img/circle-blue-icon.svg' %}" alt="choices icon" class="icon-lg" />
+                        <span class="ml-2">Promotional chanels</span>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col d-flex align-items-center">
+                        <img src="{% static 'pmdb/img/circle-blue-icon.svg' %}" alt="choices icon" class="icon-lg" />
+                        <span class="ml-2">Licensors</span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <img src="{% static 'pmdb/img/circle-blue-icon.svg' %}" alt="choices icon" class="icon-lg" />
+                        <span class="ml-2">Therapeutic areas</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

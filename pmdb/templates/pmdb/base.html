@@ -14,7 +14,6 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'pmdb/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'pmdb/css/select2-bootstrap4.css' %}">
 
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
@@ -31,7 +30,7 @@
 
     <!-- extra HEAD bottom -->
     {% block extra_head_bottom %} {% endblock %}
-    <script src="{% static 'pmdb/js/script.js' %}"></script>
+
 
     <title>PMDB</title>
 </head>
@@ -40,36 +39,36 @@
     <div class="nav-bar__container">
         <div class="nav-bar__left-bar">
             <button class="icon-with-right-margin nav-bar__toggle-sidebar">
-                <img class="icon" src="{% static 'pmdb/img/menu.png' %}" alt="menu">
+                <img class="icon" src="{% static 'pmdb/img/menu.png' %}" alt="menu" />
             </button>
             <a href="#" class="icon-with-right-margin">
-                <img class="icon" src="{% static 'pmdb/img/home-icon-silhouette.png' %}" alt="home">
+                <img class="icon" src="{% static 'pmdb/img/home-icon-silhouette.png' %}" alt="home" />
             </a>
             <a href="#" class="icon-with-right-margin">
-                <img class="icon" src="{% static 'pmdb/img/group-avatar.png' %}" alt="group">
+                <img class="icon" src="{% static 'pmdb/img/group-avatar.png' %}" alt="group" />
             </a>
             <a href="#" class="icon-with-right-margin">
-                <img class="icon" src="{% static 'pmdb/img/diary-silhouette.png' %}" alt="diary">
+                <img class="icon" src="{% static 'pmdb/img/diary-silhouette.png' %}" alt="diary" />
             </a>
             <a href="#" class="nav-bar__icon-link">
-                <img class="icon" src="{% static 'pmdb/img/settings_icon.png' %}" alt="settings">
+                <img class="icon" src="{% static 'pmdb/img/settings_icon.png' %}" alt="settings" />
             </a>
         </div>
         <div class="nav-bar__middle-bar-container">
-            <img class="nav-bar__logo" src="{% static 'pmdb/img/logo.png' %}" alt="application logo">
+            <img class="nav-bar__logo" src="{% static 'pmdb/img/logo.png' %}" alt="application logo" />
             <span class="project-title">PMDB</span>
         </div>
         <div class="nav-bar__right-bar">
             <a href="#" class="nav-bar__icon-link">
-                <img class="icon" src="{% static 'pmdb/img/alert_icon.png' %}" alt="alert">
+                <img class="icon" src="{% static 'pmdb/img/alert_icon.png' %}" alt="alert" />
             </a>
             <a href="#" class="icon-with-left-margin">
-                <img class="icon" src="{% static 'pmdb/img/information-icon.png' %}" alt="information">
+                <img class="icon" src="{% static 'pmdb/img/information-icon.png' %}" alt="information" />
             </a>
             <div class="nav-bar__profile-container">
                 <span class="greeting">Hi, user</span>
                 <a href="#" class="icon-with-left-margin">
-                    <img class="icon" src="{% static 'pmdb/img/avatar_icon.png' %}" alt="profile">
+                    <img class="icon" src="{% static 'pmdb/img/avatar_icon.png' %}" alt="profile" />
                 </a>
             </div>
         </div>
@@ -82,7 +81,7 @@
                 <div class="sidebar__tab-header sidebar__tab-header--special">
                     <div class="sidebar__tab-icon-container sidebar__tab-icon-container--special">
                         <div class="sidebar__tab-icon-wrapper--special">
-                            <img class="sidebar__tab-icon sidebar__tab-icon--special" src="{% static 'pmdb/img/plus.png' %}" alt="plus">
+                            <img class="sidebar__tab-icon sidebar__tab-icon--special" src="{% static 'pmdb/img/plus.png' %}" alt="plus" />
                         </div>
                     </div>
                     <div class="sidebar__tab-header-title sidebar__tab-header-title--special">
@@ -95,12 +94,12 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header tab-selected">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/black-light-bulb.png' %}" alt="bulb">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/black-light-bulb.png' %}" alt="bulb" />
                     </div>
                     <div class="sidebar__tab-header-title ">
                         <div class="sidebar__tab-title-wraper">
                             <span class="sidebar__tab-title">PROJECTS</span>
-                            <img class="sidebar__tab-arrow" src="{% static 'pmdb/img/arrow.png' %}" alt="arrow">
+                            <img class="sidebar__tab-arrow" src="{% static 'pmdb/img/arrow.png' %}" alt="arrow" />
                         </div>
                     </div>
                 </div>
@@ -123,7 +122,7 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/ruler.svg' %}" alt="templates">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/ruler.svg' %}" alt="templates" />
                     </div>
                     <div class="sidebar__tab-header-title ">
                         <div class="sidebar__tab-title-wraper">
@@ -135,7 +134,7 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/eye-open.svg' %}" alt="saved views">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/eye-open.svg' %}" alt="saved views" />
                     </div>
                     <div class="sidebar__tab-header-title ">
                         <div class="sidebar__tab-title-wraper">
@@ -147,7 +146,7 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/share.png' %}" alt="shared views">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/share.png' %}" alt="shared views" />
                     </div>
                     <div class="sidebar__tab-header-title ">
                         <div class="sidebar__tab-title-wraper">
@@ -159,7 +158,7 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/download-button.png' %}" alt="import manager">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/download-button.png' %}" alt="import manager" />
                     </div>
                     <div class="sidebar__tab-header-title ">
                         <div class="sidebar__tab-title-wraper">
@@ -171,7 +170,7 @@
             <div class="sidebar__tab-container">
                 <div class="sidebar__tab-header">
                     <div class="sidebar__tab-icon-container">
-                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/files.png' %}" alt="reports">
+                        <img class="sidebar__tab-icon" src="{% static 'pmdb/img/files.png' %}" alt="reports" />
                     </div>
                     <div class="sidebar__tab-header-title">
                         <div class="sidebar__tab-title-wraper">
@@ -188,6 +187,10 @@
 
     </div>
 </div>
-{% block javascript %} {% endblock %}
+
+<script src="{% static 'pmdb/js/sidebar.js' %}" defer></script>
+{% block javascript %}
+
+{% endblock %}
 </body>
 </html>

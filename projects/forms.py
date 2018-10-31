@@ -41,13 +41,13 @@ class ProjectCreateFormJson(forms.ModelForm):
         """Add Crispy helper to init."""
         super(ProjectCreateFormJson, self).__init__(*args, **kwargs)
         helper = FormHelper(self)
-        helper.form_class = 'manipulate-form'
+        helper.form_class = 'menu-form'
         helper.form_id = 'create_form'
         helper.form_action = reverse_lazy('project_create_json')
         helper.layout.append(
             Div(Div(
                 Submit('create_project', 'Create project',
-                       css_class="btn btn-block manipulate-form__submit-btn"),
+                       css_class="btn btn-block menu-form__submit-btn"),
                 css_class='col-6 offset-6'),
                 css_class='row')
         )

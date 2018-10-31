@@ -72,13 +72,17 @@ $(function () {
             $('.table__cell--header:not(:first-child)').addClass('table__cell--header-no-checkbox');
 
             $('.table__name-link').click(function () {
-              $('.menu__content').hide();
+              $('menu-container').hide();
               // child will show after parent
               $('.menu').show(0, function () {
                   $('.details').show();
               });
 
             });
+
+            $('.table__select--one').change(function () {
+                showHideManipulationIcons();
+            })
         }
     });
 
@@ -113,6 +117,39 @@ $(function () {
         } else {
             $('.table__select--one').prop('checked', false);
         }
+        showHideManipulationIcons();
+    });
+
+    /**
+     * Decide whether show or hide table rows manipulation icons (edit, delete, import) basing on number of selected rows
+     */
+    function showHideManipulationIcons() {
+        let numberOfSelectedRows = $('.table__select:checked').length;
+
+        if (numberOfSelectedRows === 0) {
+            $('.sheet__manipulation-icon').css('visibility', 'hidden');
+        }
+        if (numberOfSelectedRows === 1) {
+            $('.sheet__manipulation-icon:not(:first-child)').css('visibility', 'visible');
+            $('.sheet__manipulation-icon:first-child').css('visibility', 'hidden');
+        }
+        if (numberOfSelectedRows > 1) {
+            $('.sheet__manipulation-icon').css('visibility', 'visible');
+        }
+      }
+
+    $('.columns-control__show-column-icon').click(function () {
+        $(this).hide();
+        $(this).siblings('.columns-control__hide-column-icon').css('display', 'inline');
+        let column = table.column($(this).attr('data-column'));
+        column.visible(false);
+    });
+
+    $('.columns-control__hide-column-icon').click(function () {
+        $(this).hide();
+        $(this).siblings('.columns-control__show-column-icon').css('display', 'inline');
+        let column = table.column($(this).attr('data-column'));
+        column.visible(true);
     });
 });
 </script>
