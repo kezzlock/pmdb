@@ -128,17 +128,15 @@ class ProjectListJson(BaseDatatableView):
 
 
 class ProjectDetailJson(generics.RetrieveAPIView):
-    """
-    Retrieve a project instance.
-    """
+    """Retrieve a project instance."""
+
     queryset = Project.objects.all()
     serializer_class = ProjectDetailSerializer
 
 
 class ProjectCreateJson(generics.CreateAPIView):
-    """
-    Create a project instance.
-    """
+    """Create a project instance."""
+
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
@@ -150,7 +148,8 @@ class ProjectCreateJson(generics.CreateAPIView):
 
 
 class ProjectUpdateJson(generics.RetrieveUpdateAPIView):
-    """Update a Project Instance using JSON"""
+    """Update a Project Instance using JSON."""
+
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
