@@ -58,7 +58,7 @@
       </table>
   </div>
 </div>
-<div class="menu">
+<div class="menu" style="display: block">
     <img class="menu__exit-icon" src="{% static 'pmdb/img/error.svg' %}" alt="exit" />
     <div class="details menu-container" style="display:none">
         <div class="menu-header">
@@ -185,6 +185,19 @@
         <div class="menu-header">
             <img src="{% static 'pmdb/img/plus-round.svg' %}" alt="columns" class="menu-header__header-icon" />
             <span class="menu-header__header">Create new project</span>
+        </div>
+        <div class="menu-content">
+
+              <!-- Render crispy form -->
+              {% crispy form %}
+              <!-- end crispy form -->
+
+        </div>
+    </div>
+    <div class="menu-update menu-container" style="display: block">
+        <div class="menu-header">
+            <img src="{% static 'pmdb/img/edit.svg' %}" alt="columns" class="menu-header__header-icon" />
+            <span class="menu-header__header">Update project</span>
         </div>
         <div class="menu-content">
 
