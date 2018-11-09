@@ -1,6 +1,4 @@
-{% load static %}
-
-<script>
+let datatableApiUrl = '/api/project/datatable/';
 
 /* Detail script */
 
@@ -9,11 +7,11 @@ function showDetails(id) {
       id = 1;
   }
   $.ajax({
-    url: "{% url 'project_detail_json' 1 %}".replace(/1/, id.toString()),
-    dataType: "json",
+    url: '/api/project/1/'.replace(/1/, id.toString()),
+    dataType: 'json',
     success: function(data) {
       Object.keys(data).forEach(function(key) {
-          if ( data[key] !== null && data[key] !== "" ){
+          if ( data[key] !== null && data[key] !== '' ){
             $('#details__'+key).text(data[key]);
           }
       });
@@ -31,7 +29,7 @@ $(function () {
         processing: true,
         serverSide: true,
         serverSave: true,
-        ajax: "{% url 'project_list_json' %}",
+        ajax: datatableApiUrl,
         columnDefs: [
             {
                 targets: 0,
@@ -68,7 +66,7 @@ $(function () {
         initComplete: function () {
             $('.table__thead > tr').addClass('table__row table__row--header');
             $('th').addClass('table__cell--header');
-            $('.table__cell--header.sorting').append('<img class="table__sort-icon" src="{% static 'pmdb/img/arrows.svg' %}">');
+            $('.table__cell--header.sorting').append('<img class="table__sort-icon" src="/static/pmdb/img/arrows.svg">');
             $('.table__cell--header:not(:first-child)').addClass('table__cell--header-no-checkbox');
 
             $('.table__name-link').click(function () {
@@ -88,24 +86,24 @@ $(function () {
 
     $(table.table().container()).addClass('sheet__table-wrapper');
 
-    $(".sheet__search").keyup(function () {
+    $('.sheet__search').keyup(function () {
         table.search(this.value).draw();
     });
 
     $('.sorting.table__cell--header.table__cell--header-no-checkbox').click(function () {
         $('.table__sort-icon-sorted')
-            .replaceWith('<img class="table__sort-icon" src="{% static 'pmdb/img/arrows.svg' %}">');
+            .replaceWith('<img class="table__sort-icon" src="/static/pmdb/img/arrows.svg">');
 
         if ($(this).hasClass('sorting_asc')) {
             $(this)
                 .children('.table__sort-icon')
-                .replaceWith('<img class="table__sort-icon table__sort-icon-sorted" src="{% static 'pmdb/img/sort_asc.svg' %}">');
+                .replaceWith('<img class="table__sort-icon table__sort-icon-sorted" src="/static/pmdb/img/sort_asc.svg">');
         }
 
         if ($(this).hasClass('sorting_desc')) {
             $(this)
                 .children('.table__sort-icon')
-                .replaceWith('<img class="table__sort-icon table__sort-icon-sorted" src="{% static 'pmdb/img/sort_desc.svg' %}">');
+                .replaceWith('<img class="table__sort-icon table__sort-icon-sorted" src="/static/pmdb/img/sort_desc.svg">');
         }
     });
 
@@ -153,4 +151,3 @@ $(function () {
         column.visible(true);
     });
 });
-</script>

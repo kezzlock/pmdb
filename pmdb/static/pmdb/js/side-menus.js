@@ -1,6 +1,7 @@
 /* Side menus script */
 
 let filterApiUrl = '/api/project/datatable/';
+let createApiUrl = '/api/project/create/';
 
 $('.menu__exit-icon').click(function () {
     // child will be hide after container
@@ -45,20 +46,46 @@ $('.menu-header__clear-icon').click(function () {
     $('.menu-filter .form-control').val(null).trigger('change');
 });
 
-$('.manipulate-form').submit(function (event) {
+// ajax project create for /create/ view
+$('#create_form').submit(function(event){
+    var csrftoken = jQuery('[name=csrfmiddlewaretoken]').val();
+    event.stopPropagation();
+    event.preventDefault();
     $.ajax({
-        'url': '',
-        'type': 'post',
-        'contentType': 'json',
-        'data': $(this).serializeArray(),
-        'success': function (result, status, xhr) {
+      type: 'POST',
+      url: createApiUrl,
+      csrfmiddlewaretoken: csrftoken,
+      data: $(this).serializeArray(),
+      success: function(data){
+        $('.menu').hide(0, function () {
+            $('.menu__content').hide();
+        });
+        $('#msg__success').show();
+        setTimeout(function() { $('#msg__success').hide(); }, 5000);
+        setTimeout(function() { location.reload(); }, 5000);
 
-        },
-        'error': function (xhr, status, error) {
-
-        }
+      },
+      error: function(XMLHttpRequest, textStatus, errorThrown) {
+        console.log(XMLHttpRequest);
+        // alert('some error ' + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+      }
     });
 });
+
+// $('.manipulate-form').submit(function (event) {
+//     $.ajax({
+//         'url': '',
+//         'type': 'post',
+//         'contentType': 'json',
+//         'data': $(this).serializeArray(),
+//         'success': function (result, status, xhr) {
+//
+//         },
+//         'error': function (xhr, status, error) {
+//
+//         }
+//     });
+// });
 
 $('.filter-form').submit(function (event) {
     $.ajax({

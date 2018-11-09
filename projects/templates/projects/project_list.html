@@ -5,7 +5,7 @@
 {% load verbose_tags %}
 
 {% block javascript %}
-  {% include "projects/scripts.html" %}
+  <script src="{% static 'pmdb/js/table.js' %}" defer></script>
   <script src="{% static 'pmdb/js/side-menus.js' %}" defer></script>
   <script src="{% static 'pmdb/js/menu-show-hide-columns.js' %}" defer></script>
 {% endblock %}
@@ -194,7 +194,7 @@
 
         </div>
     </div>
-    <div class="menu-update menu-container" style="display: block">
+    {% comment %} <div class="menu-update menu-container" style="display: block">
         <div class="menu-header">
             <img src="{% static 'pmdb/img/edit.svg' %}" alt="columns" class="menu-header__header-icon" />
             <span class="menu-header__header">Update project</span>
@@ -206,7 +206,7 @@
               <!-- end crispy form -->
 
         </div>
-    </div>
+    </div> {% endcomment %}
     <div class="menu-filter menu-container">
         <div class="menu-header">
             <img src="{% static 'pmdb/img/filter.svg' %}" alt="columns" class="menu-header__header-icon" />
