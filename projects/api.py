@@ -75,7 +75,7 @@ class ProjectListJson(BaseDatatableView):
         # return link to absolute url
         if value and column == 'name':
             # return '<a href="%s" class="table__name-link">%s</a>' % (obj.get_absolute_url(), value)
-            return f'<a href="#" class="table__name-link" onclick="showDetails({obj.pk})">{value}</a>'
+            return f'<a href="#" class="table__name-link" objID="{obj.pk}">{value}</a>'
         return value
 
     def filter_queryset(self, qs):

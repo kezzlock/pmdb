@@ -1,27 +1,6 @@
 let datatableApiUrl = '/api/project/datatable/';
 
-/* Detail script */
-
-function showDetails(id) {
-  if (id === undefined) {
-      id = 1;
-  }
-  $.ajax({
-    url: '/api/project/1/'.replace(/1/, id.toString()),
-    dataType: 'json',
-    success: function(data) {
-      Object.keys(data).forEach(function(key) {
-          if ( data[key] !== null && data[key] !== '' ){
-            $('#details__'+key).text(data[key]);
-          }
-      });
-    }
-  });
-}
-
 /* Table script */
-$(function () {
-
     var table = $('._table').DataTable({
         //data: JSON_duza_tabela.data,
         //columns: JSON_duza_tabela.columns,
@@ -71,6 +50,23 @@ $(function () {
 
             $('.table__name-link').click(function () {
               $('menu-container').hide();
+              // update details menu
+              // require of ObjID attribute on table__name-link
+              var objID = $(this).attr('objID');
+              if (objID === undefined) {
+                  objID = 1;
+              }
+              $.ajax({
+                url: '/api/project/1/'.replace(/1/, objID.toString()),
+                dataType: 'json',
+                success: function(data) {
+                  Object.keys(data).forEach(function(key) {
+                      if ( data[key] !== null && data[key] !== '' ){
+                        $('#details__'+key).text(data[key]);
+                      }
+                  });
+                }
+              });
               // child will show after parent
               $('.menu').show(0, function () {
                   $('.details').show();
@@ -136,18 +132,3 @@ $(function () {
           $('.sheet__manipulation-icon:first-child').css('visibility', 'hidden');
         }
     }
-
-    $('.columns-control__show-column-icon').click(function () {
-        $(this).hide();
-        $(this).siblings('.columns-control__hide-column-icon').css('display', 'inline');
-        let column = table.column($(this).attr('data-column'));
-        column.visible(false);
-    });
-
-    $('.columns-control__hide-column-icon').click(function () {
-        $(this).hide();
-        $(this).siblings('.columns-control__show-column-icon').css('display', 'inline');
-        let column = table.column($(this).attr('data-column'));
-        column.visible(true);
-    });
-});
