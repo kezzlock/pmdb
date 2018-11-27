@@ -117,7 +117,7 @@
 
 .table__row { border-bottom: #CACACA 1px solid; }
 
-.table__row:hover { background-color: #DFDFDF; }
+.table__row:not(.table__row--selected):hover { background-color: #DFDFDF; }
 
 .table__row--header { border-bottom: none; }
 
@@ -141,12 +141,14 @@
 
 .table__sort-icon { height: 12px; width: 12px; color: white; right: 3px; position: absolute; top: 50%; transform: translateY(-50%); cursor: pointer; }
 
+.table__row--selected { background-color: rgba(73, 196, 161, 0.5); }
+
 /* Menu rules */
-.menu { height: 100%; width: 450px; position: absolute; top: 0; right: 0; border-left: solid 1px #898C8C; background-color: white; padding: 10px 30px; overflow-y: auto; display: none; }
+.menu { height: 100%; width: 550px; position: absolute; top: 0; right: 0; border-left: solid 1px #898C8C; background-color: white; padding: 10px 30px; overflow-y: auto; display: none; }
 
 .menu__exit-icon { width: 20px; height: 20px; position: absolute; top: 10px; right: 10px; cursor: pointer; }
 
-.menu-header { width: 370px; margin: auto; padding: 5px 10px; border-bottom: 1px solid #CDCDCD; }
+.menu-header { width: 470px; margin: auto; padding: 5px 10px; border-bottom: 1px solid #CDCDCD; }
 
 .menu-header__clear-icon { cursor: pointer; }
 
@@ -156,7 +158,7 @@
 .menu-container { display: none; }
 
 /* Menu content rules */
-.menu-content { padding-top: 20px; padding-bottom: 20px; }
+.menu-body { padding-top: 20px; padding-bottom: 20px; }
 
 /* Details menu rules */
 .details__last-modification-container { font-size: 12px; color: #959595; }
@@ -188,6 +190,16 @@
 .details__more-icon { width: 10px; }
 
 .details__file-link, .details__file-link:hover { color: inherit; text-decoration: inherit; }
+
+.details__tab { font-size: 0.65rem; font-family: 'Source Sans Pro', sans-serif; color: initial; }
+
+.details__tab.active .details__tab-icon { display: none; }
+
+.details__tab.active .details__tab-icon-active { display: initial; }
+
+.details__tab:not(.active) .details__tab-icon { display: initial; }
+
+.details__tab:not(.active) .details__tab-icon-active { display: none; }
 
 /* Columns control menu */
 .menu-header__header-icon { width: 20px; height: 20px; }
@@ -289,4 +301,4 @@ body { height: 100vh; display: -ms-flexbox; display: flex; -ms-flex-direction: c
 
 .icon-lg { width: 32px; height: 32px; }
 
-.asteriskField {color: red;}
+.asteriskField { color: red; }
