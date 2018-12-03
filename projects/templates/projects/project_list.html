@@ -28,9 +28,9 @@
       <div class="sheet__space-filler"></div>
       <div class="sheet__icons">
           <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon" src="{% static 'pmdb/img/edit.svg' %}" alt="edit" /></a>
-          <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove" /></a>
-          <a href="#" class="sheet__manipulation-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
-                           alt="download" /></a>
+         <a href="#" class="sheet__manipulation-icon sheet__delete-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/remove.svg' %}" alt="remove" /></a>
+         <a href="#" class="sheet__manipulation-icon sheet__delete-icon"><img class="sheet__icon sheet__icon--margin-left" src="{% static 'pmdb/img/download.svg' %}"
+                           alt="export" /></a>
       </div>
       <div class="sheet__space-filler"></div>
       <div class="sheet__search-container">
@@ -57,7 +57,7 @@
 
 
           </thead>
-          <tbody></tbody>
+          <tbody class="table__tbody"></tbody>
       </table>
   </div>
 </div>

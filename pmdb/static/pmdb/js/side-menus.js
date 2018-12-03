@@ -42,7 +42,7 @@ $('.sheet__show-choices-menu').click(function () {
     });
 });
 
-$('.menu-header__clear-icon').click(function () {
+$('.menu-filter__clear-container').click(function () {
     $('.menu-filter .form-control').val(null).trigger('change');
 });
 

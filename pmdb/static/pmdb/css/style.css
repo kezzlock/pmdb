@@ -45,7 +45,7 @@
 
 .sidebar__tab-header { display: -ms-flexbox; display: flex; }
 
-.sidebar__tab-header-title { display: none; overflow: hidden; white-space: nowrap; width: 180px; }
+.sidebar__tab-header-title { width: 0px; overflow: hidden; white-space: nowrap; max-width: 180px; }
 
 .sidebar__tab-title-wraper { display: -ms-flexbox; display: flex; height: 100%; -ms-flex-pack: justify; justify-content: space-between; -ms-flex-align: center; align-items: center; width: 170px; border-radius: 0 10px 10px 0; }
 
@@ -60,7 +60,7 @@
 .sidebar__tab-title { font-family: 'BebasNeue', sans-serif; font-size: 1.3rem; color: #e0e0e0; }
 
 /* Tab with menu */
-.sidebar__tab-menu { color: #e0e0e0; margin: 10px 0 0 50px; padding: 0; list-style-position: inside; display: none; overflow: hidden; white-space: nowrap; }
+.sidebar__tab-menu { color: #e0e0e0; margin: 10px 0 0 50px; padding: 0; list-style-position: inside; width: 0; height: 0; overflow: hidden; white-space: nowrap; max-width: 180px; }
 
 .sidebar__tab-menu-item-title { position: relative; left: -5px; font-weight: 700; font-size: 16px; }
 
@@ -119,7 +119,7 @@
 
 .table__row:not(.table__row--selected):hover { background-color: #DFDFDF; }
 
-.table__row--header { border-bottom: none; }
+.table__header-row { border-bottom: none; }
 
 .table__cell { padding-top: 5px; padding-bottom: 5px; text-align: center; position: relative; }
 
@@ -143,6 +143,10 @@
 
 .table__row--selected { background-color: rgba(73, 196, 161, 0.5); }
 
+.table__row--selected-to-delete { background-color: rgba(196, 73, 73, 0.5); }
+
+.table__row--selected-to-export { background-color: rgba(73, 157, 196, 0.5); }
+
 /* Menu rules */
 .menu { height: 100%; width: 550px; position: absolute; top: 0; right: 0; border-left: solid 1px #898C8C; background-color: white; padding: 10px 30px; overflow-y: auto; display: none; }
 
@@ -150,7 +154,7 @@
 
 .menu-header { width: 470px; margin: auto; padding: 5px 10px; border-bottom: 1px solid #CDCDCD; }
 
-.menu-header__clear-icon { cursor: pointer; }
+.menu-filter__clear-container { cursor: pointer; }
 
 .menu-header__header--orange { color: #ff7f50; }
 

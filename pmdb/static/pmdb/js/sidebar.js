@@ -3,17 +3,26 @@
 /**
 * Bit of explanation:
 * -tabs are elements inside sidebar
-* -tab has its owm header and eventualy vertically toggleable menu
+* -tab has its own header and eventualy vertically toggleable menu
+* -there is one 'special tab, first one, with expandable 'plus icon'
 */
 
 var isSidebarExpanded = false;
-var countOpenMenus = 0;
 
 var sidebarMouseenterHandler = function (event, delay = 100) {
+    // set delay of sidebar expand
     timer = setTimeout(function () {
         if (isSidebarExpanded === false) {
-            $('.sidebar__tab-icon-wrapper--special').addClass('sidebar__tab-icon-wrapper--special-hover')
-            $('.sidebar__tab-header-title').animate({width: 'show'});
+            // modify 'special tab' plus icon
+            $('.sidebar__tab-icon-wrapper--special').addClass('sidebar__tab-icon-wrapper--special-hover');
+
+            // horizontally expand hidden parts of tab: tab's title and menu
+            let sidebarHeaderTitle = $('.sidebar__tab-header-title');
+            let sidebarTabMenu = $('.sidebar__tab-menu');
+
+            sidebarHeaderTitle.animate({width: sidebarHeaderTitle.css('max-width')});
+            sidebarTabMenu.animate({width: sidebarTabMenu.css('max-width')});
+
             isSidebarExpanded = true;
         }
     }, delay);
@@ -21,35 +30,19 @@ var sidebarMouseenterHandler = function (event, delay = 100) {
 
 var sidebarMouseleaveHandler = function () {
     clearTimeout(timer);
-    if (countOpenMenus === 0) {
-        $.when(
-            $('.sidebar__tab-header-title').animate({width: 'hide'})
-        ).done(function () {
-            $('.sidebar__tab-icon-wrapper--special').removeClass('sidebar__tab-icon-wrapper--special-hover');
-            $('.sidebar').addClass('sidebar--hoverable');
-        });
-        isSidebarExpanded = false;
-    }
+    $.when(
+        // hide tab's title and menu
+        $('.sidebar__tab-header-title, .sidebar__tab-menu').animate({width: '0px'})
+    ).done(function () {
+        $('.sidebar__tab-icon-wrapper--special').removeClass('sidebar__tab-icon-wrapper--special-hover');
+        $('.sidebar').addClass('sidebar--hoverable');
+    });
+    isSidebarExpanded = false;
 };
 
 $('.sidebar').mouseenter(sidebarMouseenterHandler);
 
 $('.sidebar').mouseleave(sidebarMouseleaveHandler);
-
-$('.sidebar__tab-menu').on('customSlideUp', function (e) {
-    $(this).slideUp(function () {
-        countOpenMenus--;
-
-        // check if mouse is not over sidebar
-        if (!$('.sidebar:hover').length) {
-            $('.sidebar').trigger('mouseleave');
-        }
-    });
-});
-
-$('.sidebar__tab-menu').on('customSlideDown', function (e) {
-    $(this).slideDown();
-});
 
 $('.sidebar__tab-header').click(function () {
     $(this).find('.sidebar__tab-arrow').toggleClass('sidebar__tab-arrow--rotated')
@@ -61,12 +54,17 @@ $('.sidebar__tab-header').click(function () {
 
     var tabMenu = $(this).siblings('.sidebar__tab-menu');
     if (isSidebarExpanded) {
-        if (tabMenu.is(':hidden')) {
-            tabMenu.trigger('customSlideDown');
-            countOpenMenus++;
+        if (tabMenu.height() === 0) {
+            // expand tab menu vertically to 'auto' height
+            tabMenu.animate({height: tabMenu.get(0).scrollHeight}, function () {
+                // check if mouse is not over sidebar
+                if (!$('.sidebar:hover').length) {
+                    $('.sidebar').trigger('mouseleave');
+                }
+            });
         }
-        else {
-            tabMenu.trigger('customSlideUp');
+        else if (tabMenu.height() > 0){
+            tabMenu.animate({height: 0});
         }
     }
 });

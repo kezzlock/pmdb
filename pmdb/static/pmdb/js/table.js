@@ -40,10 +40,10 @@ let datatableApiUrl = '/api/project/datatable/';
         dom: 't',
         autoWidth: false,
         createdRow: function (row) {
-            $(row).addClass('table__row');
+            $(row).addClass('table__row table__body-row');
         },
         initComplete: function () {
-            $('.table__thead > tr').addClass('table__row table__row--header');
+            $('.table__thead > tr').addClass('table__row table__header-row');
             $('th').addClass('table__cell--header');
             $('.table__cell--header.sorting').append('<img class="table__sort-icon" src="/static/pmdb/img/arrows.svg">');
             $('.table__cell--header:not(:first-child)').addClass('table__cell--header-no-checkbox');
@@ -74,14 +74,20 @@ let datatableApiUrl = '/api/project/datatable/';
 
             });
 
-            $('.table__select-one').change(function () {
+            $('.table__select-one').change(function (event) {
+                event.stopPropagation();
                 showHideManipulationIcons();
 
                 if($(this).is(':checked')) {
-                    $(this).closest('.table__row').addClass('table__row--selected');
-                } else {
+                    $(this).prop('checked', false);
                     $(this).closest('.table__row').removeClass('table__row--selected');
+                } else {
+                    $(this).prop('checked', true);
+                    $(this).closest('.table__row').addClass('table__row--selected');
                 }
+              });
+            $('.table__body-row').click(function () {
+                $(this).find('.table__select-one').change();
             })
         }
     });
@@ -113,11 +119,27 @@ let datatableApiUrl = '/api/project/datatable/';
         var all_checked = $(this).prop('checked');
 
         if (all_checked) {
-            $('.table__select-one').prop('checked', true).change();
-        } else {
             $('.table__select-one').prop('checked', false).change();
+        } else {
+            $('.table__select-one').prop('checked', true).change();
         }
         showHideManipulationIcons();
+    });
+
+    $('.sheet__delete-icon')
+        .mouseenter(function () {
+        $('.table__row--selected').addClass('table__row--selected-to-delete');
+    })
+        .mouseleave(function () {
+        $('.table__row--selected').removeClass('table__row--selected-to-delete');
+    });
+
+    $('.sheet__export-icon')
+        .mouseenter(function () {
+            $('.table__row--selected').addClass('table__row--selected-to-export');
+    })
+        .mouseleave(function () {
+            $('.table__row--selected').removeClass('table__row--selected-to-export');
     });
 
     /**
