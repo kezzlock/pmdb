@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PMDB</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="{% static 'pmdb/css/style.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+
+</head>
+<body id="startingPageBody">
+    <div class="upper-space">
+        <div class="nav-bar">
+            <div class="logo">
+                <img class="logo__icon" src="{% static 'pmdb/img/logo.png' %}" alt="application logo" />
+                <span class="logo__title logo__title--large logo__title--white">PMDB</span>
+            </div>
+            <div class="float-right">
+                <button class="btn btn-outline-dark btn-outline-dark--white btn--wider">SIGN IN</button>
+                <button class="btn btn-transparent btn--wider sign-up-btn">SIGN UP</button>
+            </div>
+        </div>
+        <div class="central-space">
+            <img src="{% static 'pmdb/img/clouds.png' %}" class="clouds-icon" alt="clouds-icon">
+            <h1 class="header">Project Management Database</h1>
+            <p class="description">
+                Application for License-In and R&D projects, unified solution to collect data, manage harmonograms and
+                budgets, track progress, archive data. All in one place.
+            </p>
+            <div class="central-buttons">
+                <button class="btn btn-outline-dark btn-outline-dark--white btn--wider mr-3">
+                    <img src="{% static 'pmdb/img/documentation.svg' %}" alt="documentation-icon" class="icon">
+                    Documentation
+                </button>
+                <button class="btn btn-outline-dark btn-outline-dark--white btn--wider">
+                    <img src="{% static 'pmdb/img/arroba.svg' %}" alt="contact-icon" class="icon mr-1">
+                    Contact
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-space"></div>
+</body>
+</html>
