@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'pmdb',
     'projects',
     'dropdowns',
+    'landing_page',
     # dataTables
     'django_datatables_view',
     # django rest framework
