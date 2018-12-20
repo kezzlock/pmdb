@@ -1,5 +1,5 @@
 let datatableApiUrl = '/api/project/datatable/';
-
+// Tworzenie i konfiguracja tabel
 /* Table script */
     var table = $('._table').DataTable({
         //data: JSON_duza_tabela.data,
@@ -73,10 +73,9 @@ let datatableApiUrl = '/api/project/datatable/';
               });
 
             });
-
+             // Konfiguracja zachowania po kliknięciu w checkbox pojedyńczego wiersza
             $('.table__select-one').change(function (event) {
                 event.stopPropagation();
-                showHideManipulationIcons();
 
                 if($(this).is(':checked')) {
                     $(this).prop('checked', false);
@@ -85,7 +84,9 @@ let datatableApiUrl = '/api/project/datatable/';
                     $(this).prop('checked', true);
                     $(this).closest('.table__row').addClass('table__row--selected');
                 }
+                setIconsVisibility();
               });
+            // Konfiguracja zachowania po kliknięciu w wiersz w tabeli
             $('.table__body-row').click(function () {
                 $(this).find('.table__select-one').change();
             })
@@ -97,7 +98,7 @@ let datatableApiUrl = '/api/project/datatable/';
     $('.sheet__search').keyup(function () {
         table.search(this.value).draw();
     });
-
+    // Konfiguracja zachowania ikony sortowania w nagłówku tabeli
     $('.sorting.table__cell--header.table__cell--header-no-checkbox').click(function () {
         $('.table__sort-icon-sorted')
             .replaceWith('<img class="table__sort-icon" src="/static/pmdb/img/arrows.svg">');
@@ -114,7 +115,7 @@ let datatableApiUrl = '/api/project/datatable/';
                 .replaceWith('<img class="table__sort-icon table__sort-icon-sorted" src="/static/pmdb/img/sort_desc.svg">');
         }
     });
-
+    // Konfiguracja zachowania checkboxa select all
     $('.table__select-all').click(function () {
         var all_checked = $(this).prop('checked');
 
@@ -123,9 +124,9 @@ let datatableApiUrl = '/api/project/datatable/';
         } else {
             $('.table__select-one').prop('checked', true).change();
         }
-        showHideManipulationIcons();
+        setIconsVisibility();
     });
-
+     // Konfiguracja zmiany kolorów wierszy po najechaniu na ikony nad tabelą
     $('.sheet__delete-icon')
         .mouseenter(function () {
         $('.table__row--selected').addClass('table__row--selected-to-delete');
@@ -142,10 +143,8 @@ let datatableApiUrl = '/api/project/datatable/';
             $('.table__row--selected').removeClass('table__row--selected-to-export');
     });
 
-    /**
-     * Decide whether show or hide table rows manipulation icons (edit, delete, import) basing on number of selected rows
-     */
-    function showHideManipulationIcons() {
+    // Konfiguracja widoczności ikon usuwania i eksportu (ikon nad tabelą) w zależności od zaznaczonych wierszy
+    function setIconsVisibility() {
         let numberOfSelectedRows = $('.table__select:checked').length;
 
         if (numberOfSelectedRows === 0) {

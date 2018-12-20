@@ -13,6 +13,22 @@
     <link rel="stylesheet" href="{% static 'pmdb/css/style.css' %}">
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <!-- Font awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css"
+          integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <!-- JS scripts-->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+            integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous">
+    </script>
 
 </head>
 <body id="startingPageBody">
@@ -23,8 +39,123 @@
                 <span class="logo__title logo__title--large logo__title--white">PMDB</span>
             </div>
             <div class="float-right">
-                <button class="btn btn-outline-dark btn-outline-dark--white btn--wider">SIGN IN</button>
-                <button class="btn btn-transparent btn--wider sign-up-btn">SIGN UP</button>
+              <div class="dropdown btn-group">
+                  <button id="signInDropdownMenuButton"
+                          data-toggle="dropdown"
+                          type="button"
+                          aria-haspopup="true"
+                          aria-expanded="false"
+                          class="btn btn-outline-dark btn-outline-dark--white btn--wider dropdown-toggle">SIGN IN</button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="signInDropdownMenuButton">
+                      <div class="dropdown-heading px-3 py-0">Login</div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-body px-3 py-0">
+                          <form action="#">
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" placeholder="Username" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-user login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" placeholder="Password" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-lock login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <button type="submit" class="btn w-100 login-submit-btn mb-2">Log in</button>
+                              <div class="form-check form-check-inline">
+                                  <input type="checkbox" class="form-check-input" id="signInrememberMeCheckbox">
+                                  <label for="signInrememberMeCheckbox" class="form-check-label">
+                                      Remember me
+                                  </label>
+                              </div>
+                              <a href="#" class="float-right">Forgot Password?</a>
+                          </form>
+                      </div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-footer px-3 py-0 text-center">
+                          <a href="#">Create an account</a>
+                      </div>
+                  </div>
+              </div>
+              <div class="dropdown btn-group">
+                  <button id="signUpDropdownMenuButton"
+                          class="btn btn-transparent btn--wider sign-up-btn dropdown-toggle"
+                          data-toggle="dropdown"
+                          type="button"
+                          aria-haspopup="true"
+                          aria-expanded="false">
+                      SIGN UP
+                  </button>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="signUpDropdownMenuButton">
+                      <div class="dropdown-heading px-3 py-0">Register</div>
+                      <div class="dropdown-divider"></div>
+                      <div class="dropdown-body px-3 py-0">
+                          <form action="#">
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" placeholder="First Name" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-user login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="text" placeholder="Last Name" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-user login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="email" placeholder="Email" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-at login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="password" placeholder="Password" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-lock login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <div class="form-group">
+                                  <div class="input-group">
+                                      <input type="password" placeholder="Confirm Password" class="form-control">
+                                      <span class="input-group-append">
+                                          <button class="btn btn-outline-secondary login-input-btn">
+                                              <i class="fas fa-lock login-input-icon"></i>
+                                          </button>
+                                      </span>
+                                  </div>
+                              </div>
+                              <button type="submit" class="btn w-100 login-submit-btn mb-2">Sign up</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
             </div>
         </div>
         <div class="central-space">
@@ -46,6 +177,7 @@
             </div>
         </div>
     </div>
+
     <div class="bottom-space"></div>
 </body>
 </html>
