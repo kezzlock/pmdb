@@ -104,7 +104,7 @@ class Project(models.Model):
     otc_atc2_class = models.ForeignKey(OtcAtc2Class, blank=True, null=True,
                                        on_delete=models.CASCADE)
     pack_size = models.TextField(blank=True)
-    pact_type = models.ForeignKey(PackType, blank=True, null=True,
+    pack_type = models.ForeignKey(PackType, blank=True, null=True,
                                   on_delete=models.CASCADE)
     shelf_life = models.IntegerField(choices=SHELL_CHOICES, default=0,
                                      null=True, blank=True)
@@ -158,7 +158,7 @@ class Project(models.Model):
     ip = models.DateField(null=True, blank=True)
     dex = models.DateField(null=True, blank=True)
     mex = models.DateField(null=True, blank=True)
-    mfd = models.DateField(null=True, blank=True)
+    mfd = models.DateField(null=True, blank=True) # market formation date
     ip_comment = models.TextField(blank=True)
     # Licensing agreement summary
     licensor = models.ForeignKey(to=Licensor, blank=True, null=True,
@@ -233,8 +233,67 @@ class Project(models.Model):
         return fields_dict.items()
 
     @classmethod
+    def get_detail_tabs(cls):
+        """
+        Method return dict with keys matching details tabs,
+        and a list of fields as a value of key.
+        """
+        details_tabs = {}
+        fields = set(f for f in cls._meta.get_fields())
+        informations = ["name", "molecule", "pharmaceutical_form", "form",
+                        "product_category", "strength","brand_name",
+                        "market","description", "project_type", "manager",
+                        "status", "therapeutic_area", "priority",
+                        "atc3_class", "otc_atc2_class", "ip", "ip_comment",
+                        "dex", "mex", "mfd", "licensor"]
+        schedule = ["project_start", "pmb_approval", "agreement",
+                    "prototype_approved", "registration_batches_ready",
+                    "dossier_availability", "dossier_submission",
+                    "ma_granted", "artwork_approval", "product_in_dsv",
+                    "launch_date", "status_comment", "pmb_approval_current",
+                    "agreement_current", "project_start_current",
+                    "prototype_approved_current",
+                    "registration_batches_ready_current",
+                    "dossier_availability_current",
+                    "dossier_submission_current","ma_granted_current",
+                    "artwork_approval_current", "product_in_dsv_current",
+                    "launch_date_current", "status_comment_current"]
+        agreements = ["contract_type", "pack_size", "pack_type", "moq",
+                      "maq", "sku", "cogs", "pmb_budget", "licence_costs",
+                      "licence_comment", "regulatory_costs", "other_costs",
+                      "total_costs", "fiveyear_income", "npv", "ebidta",
+                      "ebitda_percent", "supply_price", "floor_price",
+                      "floor_price_currency", "reconciliation",
+                      "reconciliation_comment", "lead_time_launch",
+                      "lead_time_commercial", "supply_period",
+                      "automatic_prolongation", "prolongation_period",
+                      "agreement_expiry", "agreement_expiry_date",
+                      "notice_period", "delivery_terms",
+                      "manufacturing_site", "batch_release_site",
+                      "rolling_forecast", "inventory_level","payment_terms",
+                      "exclusive_suplies", "exclusivity_period",
+                      "agreement_type", "agreement_number_eou",
+                      "registration_strategy", "variation_cost",
+                      "additional_costs"]
+        other = ["shelf_life", "risk_type", "risk_comment"]
+        for field in fields:
+            if field.name in informations:
+                details_tabs.setdefault("informations", []).append(field)
+            elif field.name in schedule:
+                details_tabs.setdefault("schedule", []).append(field)
+            elif field.name in agreements:
+                details_tabs.setdefault("agreements", []).append(field)
+            elif field.name in other:
+                details_tabs.setdefault("other", []).append(field)
+        return details_tabs
+
+
+
+
+    # CLASSMETHODS
+    @classmethod
     def get_fields(cls, exclude=None, sort=False):
-        """Return fields dictionary.
+        """Return sorted list of fields.
 
         Return dictionary with fields names:
             {field.name:field.verbose_name, ...}
@@ -256,6 +315,8 @@ class Project(models.Model):
         fields = set(f for f in cls._meta.get_fields() if (
             f.get_internal_type() == 'IntegerField'))
         return fields
+
+
 ### FILES OBJECTS ###
 
 
