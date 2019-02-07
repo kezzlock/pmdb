@@ -32,11 +32,16 @@ class ProjectListView(ListView):
     #     return context
 
     def get_context_data(self, **kwargs):
+        details_dict = Project.get_detail_tabs()
         context = super().get_context_data(**kwargs)
         # add model fields to context
         exclude_fields = ["modified_by", "modify_date", "id", "name"]
         context['fields'] = Project.get_fields(
             sort=True, exclude=exclude_fields)
+        context['informations'] = details_dict['informations']
+        context['agreements'] = details_dict['agreements']
+        context['schedule'] = details_dict['schedule']
+        context['other'] = details_dict['other']
         # add serializer to context
         form = ProjectCreateFormJson
         context['form'] = form
