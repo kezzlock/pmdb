@@ -84,10 +84,10 @@
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link details__tab" id="realisation-tab" data-toggle="tab" href="#realisationTab" role="tab" aria-controls="realisation-tab" aria-selected="false">
+                    <a class="nav-link details__tab" id="schedule-tab" data-toggle="tab" href="#scheduleTab" role="tab" aria-controls="schedule-tab" aria-selected="false">
                         <div class="text-center mb-1">
-                            <img class="icon-lg details__tab-icon-active" src="{% static 'pmdb/img/realisation-active.svg' %}" alt="realisation tab icon">
-                            <img class="icon-lg details__tab-icon" src="{% static 'pmdb/img/realisation.svg' %}" alt="realisation tab icon">
+                            <img class="icon-lg details__tab-icon-active" src="{% static 'pmdb/img/schedule-active.svg' %}" alt="schedule tab icon">
+                            <img class="icon-lg details__tab-icon" src="{% static 'pmdb/img/schedule.svg' %}" alt="schedule tab icon">
                         </div>
                         Schedule
                     </a>
@@ -111,12 +111,12 @@
                     </a>
                 </li>
                 <li class="nav-item text-center">
-                    <a class="nav-link details__tab" id="files-tab" data-toggle="tab" href="#filesTab" role="tab" aria-controls="files-tab" aria-selected="false">
+                    <a class="nav-link details__tab" id="others-tab" data-toggle="tab" href="#othersTab" role="tab" aria-controls="others-tab" aria-selected="false">
                         <div class="text-center mb-1">
                             <img class="icon-lg details__tab-icon-active" src="{% static 'pmdb/img/other-active.svg' %}" alt="other tab icon">
                             <img class="icon-lg details__tab-icon" src="{% static 'pmdb/img/other.svg' %}" alt="other tab icon">
                         </div>
-                        Other
+                        Others
                     </a>
                 </li>
             </ul>
@@ -126,7 +126,7 @@
                       <div class="details__container-header">
                           Project informations
                       </div>
-                      {% for field in fields %}
+                      {% for field in informations %}
                         <div class="details__data-container">
                             <div class="details__data-row">
                                 <span class="details__data-key">{{ field.verbose_name|safe|title }}</span>
@@ -137,14 +137,37 @@
 
                     </div>
                 </div>
-                <div class="tab-pane fade show" id="planTab" role="tabpanel" aria-labelledby="plan-tab">
-                    Plan
-                </div>
-                <div class="tab-pane fade show" id="realisationTab" role="tabpanel" aria-labelledby="realisation-tab">
-                    Realisation
+                <div class="tab-pane fade show" id="scheduleTab" role="tabpanel" aria-labelledby="schedule-tab">
+                    <div class="details__basic-informations-container">
+                      <div class="details__container-header">
+                          Schedule
+                      </div>
+                      {% for field in schedule %}
+                        <div class="details__data-container">
+                            <div class="details__data-row">
+                                <span class="details__data-key">{{ field.verbose_name|safe|title }}</span>
+                                <span class="details__data-value" id="details__{{ field.name }}"><span style="color:silver;">&mdash;</span></span>
+                            </div>
+                        </div>
+                      {% endfor %}
+
+                    </div>
                 </div>
                 <div class="tab-pane fade show" id="agreementsTab" role="tabpanel" aria-labelledby="agreements-tab">
-                    Agreements
+                    <div class="details__basic-informations-container">
+                      <div class="details__container-header">
+                          Agreements
+                      </div>
+                      {% for field in agreements %}
+                        <div class="details__data-container">
+                            <div class="details__data-row">
+                                <span class="details__data-key">{{ field.verbose_name|safe|title }}</span>
+                                <span class="details__data-value" id="details__{{ field.name }}"><span style="color:silver;">&mdash;</span></span>
+                            </div>
+                        </div>
+                      {% endfor %}
+
+                    </div>
                 </div>
                 <div class="tab-pane fade show" id="filesTab" role="tabpanel" aria-labelledby="files-tab">
                     <div class="details__files-container">
@@ -221,8 +244,21 @@
                         </div>
                     </div>
                 </div>
-                <div class="tab-pane fade show" id="otherTab" role="tabpanel" aria-labelledby="other-tab">
-                    Other
+                <div class="tab-pane fade show" id="othersTab" role="tabpanel" aria-labelledby="others-tab">
+                  <div class="details__basic-informations-container">
+                    <div class="details__container-header">
+                        Others
+                    </div>
+                    {% for field in other %}
+                      <div class="details__data-container">
+                          <div class="details__data-row">
+                              <span class="details__data-key">{{ field.verbose_name|safe|title }}</span>
+                              <span class="details__data-value" id="details__{{ field.name }}"><span style="color:silver;">&mdash;</span></span>
+                          </div>
+                      </div>
+                    {% endfor %}
+
+                  </div>
                 </div>
             </div>
         </div>
