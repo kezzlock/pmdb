@@ -66,3 +66,4 @@ db.sqlite3
 .ipynb_checkpoints
 */.ipynb_checkpoints/*
 *.ipynb
+.vscode/settings.json

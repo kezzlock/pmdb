@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     # crispy forms
      'crispy_forms',
     # other
+    'filemanager',
 
 ]
 
@@ -135,6 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/uploads/'
+MEDIA_ROOT = os.path.join(BASE_DIR, "files")
 # REST FRAMEWORK
 REST_FRAMEWORK = {
     'DEFAULT_PARSER_CLASSES': (
